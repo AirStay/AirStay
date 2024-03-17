@@ -1,6 +1,35 @@
 import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+const Signup = (props) => {
+  const [credentials, setCredentials] = useState({name: "", email: "", password: "",cpassword: "",phno: ""}) 
+    let navigate = useNavigate();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const {name,email,password,phno} = credentials;
+        const response = await fetch("http://localhost:5000/api/auth/createuser", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name, email, password,phno})
+        });
+        const json = await response.json()
+        console.log(json);
+        if (json.success){
+            // Save the auth token and redirect
+            localStorage.setItem('token', json.authtoken); 
+            navigate("/");
+        //     props.showAlert("Account created successfully", "success");
+        }
+        else{
+            // props.showAlert("Invalid credentials", "danger");
+        }
+    }
 
-const Signup = () => {
+    const onChange = (e)=>{
+        setCredentials({...credentials, [e.target.name]: e.target.value})
+    }
   return (
     <div
       style={{
@@ -23,17 +52,19 @@ const Signup = () => {
           Register
         </h3>
 
-        <form className='container'>
+        <form className='container' onSubmit={handleSubmit}>
           <fieldset>
             <div className="mb-1">
               <label htmlFor="exampleFormControlInput1" className="form-label">
                 Name
               </label>
               <input
-                type="text"
+                type="name"
                 className="form-control"
                 style={{ width: '100%' }}
                 id="exampleFormControlInput1"
+                name="name"
+                onChange={onChange} 
               />
             </div>
             <div className="mb-1">
@@ -45,6 +76,8 @@ const Signup = () => {
                 className="form-control"
                 style={{ width: '100%' }}
                 id="exampleFormControlInput1"
+                name="email"
+                onChange={onChange}
               />
             </div>
             <div className="mb-1">
@@ -57,6 +90,8 @@ const Signup = () => {
                 className="form-control"
                 style={{ width: '100%' }}
                 aria-describedby="passwordHelpBlock"
+                name="password"
+                onChange={onChange}
               />
             </div>
 
@@ -73,6 +108,8 @@ const Signup = () => {
                 className="form-control"
                 style={{ width: '100%' }}
                 aria-describedby="passwordHelpBlock"
+                name="cpassword"
+                onChange={onChange} 
               />
             </div>
             <div className="mb-1">
@@ -85,11 +122,13 @@ const Signup = () => {
                 className="form-control"
                 style={{ width: '100%' }}
                 aria-describedby="passwordHelpBlock"
+                name="phno"
+                onChange={onChange} 
               />
             </div>
           </fieldset>
 
-          <button className="btn btn-success mt-4" style={{ width: '100%' }}>
+          <button type="submit" className="btn btn-success mt-4" style={{ width: '100%' }}>
             Register
           </button>
 

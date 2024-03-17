@@ -1,6 +1,35 @@
 import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+const Login = (props) => {
+  const [credentials, setCredentials] = useState({email: "", password: ""}) 
+  let navigate = useNavigate();
 
-const Login = () => {
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({email: credentials.email, password: credentials.password})
+      });
+      const json = await response.json()
+      console.log(json);
+      if (json.success){
+          // Save the auth token and redirect
+          localStorage.setItem('token', json.authtoken); 
+          navigate("/");
+          // props.showAlert("Logged in successfully", "success")
+      }
+      else{
+          // props.showAlert("Invalid Details", "danger")
+      }
+  }
+
+  const onChange = (e)=>{
+      setCredentials({...credentials, [e.target.name]: e.target.value})
+  }
   return (
     <div
       style={{
@@ -23,7 +52,7 @@ const Login = () => {
           Login
         </h3>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <fieldset>
             <div className="mb-3">
               <label htmlFor="exampleFormControlInput1" className="form-label">
@@ -35,6 +64,8 @@ const Login = () => {
                 style={{ width: '100%' }}
                 id="exampleFormControlInput1"
                 placeholder="name@example.com"
+                name="email"
+                onChange={onChange}
               />
             </div>
             <div className="mb-3">
@@ -47,6 +78,8 @@ const Login = () => {
                 className="form-control"
                 style={{ width: '100%' }}
                 aria-describedby="passwordHelpBlock"
+                name="password"
+                onChange={onChange}
               />
               <div className="form-text">
                 <a href="#forgot-password-modal" data-bs-toggle="modal">
@@ -59,7 +92,7 @@ const Login = () => {
             </div>
           </fieldset>
 
-          <button className="btn btn-success" style={{ width: '100%' }}>
+          <button type="submit" className="btn btn-success" style={{ width: '100%' }}>
             Login
           </button>
           

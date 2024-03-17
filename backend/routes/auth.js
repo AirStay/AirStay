@@ -9,7 +9,8 @@ const { body, validationResult } = require('express-validator');
 router.post('/createuser', [
     body('name' , 'enter a valid name').isLength({ min: 3 }),
     body('email' , 'enter a valid email').isEmail(),
-    body('password' , 'password must be of atleast 5 characters').isLength({ min: 5 }),
+    body('password' , 'password must be of 8-20 characters long').isLength({ min: 8 }),
+    body('phno' , 'enter a valid phno').isMobilePhone(),
 ] , async (req, res)=>{
     let success = false;
     //if there are errors return bad request and the errors
@@ -30,7 +31,8 @@ router.post('/createuser', [
     user = await User.create({
         name : req.body.name,
         email : req.body.email,
-        password : secPass
+        password : secPass,
+        phno : req.body.phno
     });
     const data = {
         user:{
