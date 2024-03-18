@@ -8,12 +8,14 @@ import Signup from './Components/Signup';
 import Filter from './Components/Filter';
 import Home from './Components/Home';
 import Profile from './Components/Profile';
+// import Payment from './Components/Payment';
 
 function App() {
   return (
     <Router> {/* Wrap your components with Router */}
       <>
         <Navbar />
+        {/* <Payment/> */}
         <div className="container">
           <Routes>
             <Route path='/profile' element={<Profile/>} />
