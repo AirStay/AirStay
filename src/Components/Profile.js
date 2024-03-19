@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // Import CSS file for styles (if needed)
 
 const UserInfo = ({ fullName, emailAddress, phoneNumber }) => {
@@ -10,6 +10,7 @@ const UserInfo = ({ fullName, emailAddress, phoneNumber }) => {
     </div>
   );
 };
+
 
 const EditProfileForm = ({ onClose }) => {
   const [fullName, setFullName] = useState('Your Full Name');
@@ -32,6 +33,7 @@ const EditProfileForm = ({ onClose }) => {
           id="fullName"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
+          name="name"
         />
       </div>
       <div className="form-group">
@@ -42,6 +44,7 @@ const EditProfileForm = ({ onClose }) => {
           id="emailAddress"
           value={emailAddress}
           onChange={(e) => setEmailAddress(e.target.value)}
+          name="email"
         />
       </div>
       <div className="form-group">
@@ -52,6 +55,7 @@ const EditProfileForm = ({ onClose }) => {
           id="phoneNumber"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
+          name="phno"
         />
       </div>
       <button type="submit" className="btn btn-primary">
@@ -173,8 +177,31 @@ const Profile = () => {
   const handleButtonClick = (buttonId) => {
     setActiveButton(buttonId);
   };
+  const [user, setUser] = useState({});
 
+  useEffect(() => {
+      const fetchUserDetails = async () => {
+          try {
+              const token = localStorage.getItem('token');
+              console.log('Token:', token); // Add this line to check the token
+              const response = await fetch("http://localhost:5000/api/auth/getuser", {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'auth-token': token,
+                  },
+              });
+              const data = await response.json();
+              setUser(data);
+          } catch (error) {
+              console.error("Error fetching user details:", error);
+          }
+      };
+  
+      fetchUserDetails();
+  }, []);
   return (
+    <>
     <div className="centered-container" style={{ display: 'flex', justifyContent: 'center', margin: '4vh' }}>
       <div className="button-container">
         <button
@@ -195,13 +222,14 @@ const Profile = () => {
         >
           My Accommodation
         </button>
+      
 
         {activeButton === 'profile' && (
           <div className="profile-details mt-4">
             <UserInfo
-              fullName="Your Full Name"
-              emailAddress="your.email@example.com"
-              phoneNumber="1234567890"
+              fullName={user.name}
+              emailAddress={user.email}
+              phoneNumber={user.phno}
             />
             <EditProfileButton />
             <ChangePasswordButton />
@@ -209,6 +237,7 @@ const Profile = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
