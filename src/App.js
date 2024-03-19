@@ -15,7 +15,6 @@ function App() {
     <Router> {/* Wrap your components with Router */}
       <>
         <Navbar />
-        <Payment/>
         {/* <Payment/> */}
         <div className="container">
           <Routes>
