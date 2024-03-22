@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import MyAccommodation from './MyAccomodation';
 // Import CSS file for styles (if needed)
 
 const UserInfo = ({ fullName, emailAddress, phoneNumber }) => {
@@ -220,7 +222,7 @@ const Profile = () => {
           className={`btn ${activeButton === 'accommodation' ? 'btn-success' : 'btn-secondary'}`}
           onClick={() => handleButtonClick('accommodation')} style={{ marginRight: '10px' }}
         >
-          My Accommodation
+          My Accomodation
         </button>
       
 
@@ -233,6 +235,12 @@ const Profile = () => {
             />
             <EditProfileButton />
             <ChangePasswordButton />
+          </div>
+        )}
+
+        {activeButton === 'accommodation' && (
+          <div className="profile-details mt-4">
+            <MyAccommodation/>
           </div>
         )}
       </div>

@@ -9,6 +9,7 @@ import Filter from './Components/Filter';
 import Home from './Components/Home';
 import Profile from './Components/Profile';
 import Payment from './Components/Payment';
+import MyAccommodation from './Components/MyAccomodation';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
+          <Route path="/myaccomodation" element={<MyAccommodation />} />
           </Routes>
         </div>
         <Filter />
