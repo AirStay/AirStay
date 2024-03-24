@@ -16,9 +16,9 @@ app.use('/api/auth', require('./routes/auth'))
 app.use('/api/accomod', require('./routes/adeaccomod'))
 
 app.get('/', (req, res) => {
-  res.send('homelyhub')
+  res.send('airstay')
 })
 
 app.listen(port, () => {
-  console.log(`HomelyHub backend listening on http://localhost:${port}`)
+  console.log(`Airstay backend listening on http://localhost:${port}`)
 })
