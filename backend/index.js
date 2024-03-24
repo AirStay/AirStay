@@ -13,6 +13,7 @@ app.use(express.json())
 app.use(cors());
 //avilable routes
 app.use('/api/auth', require('./routes/auth'))
+app.use('/api/accomod', require('./routes/adeaccomod'))
 
 app.get('/', (req, res) => {
   res.send('homelyhub')

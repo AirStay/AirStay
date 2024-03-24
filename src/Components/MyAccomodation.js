@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Form, Button, Container } from "react-bootstrap";
+import axios from "axios";
 import {
   FaBed,
   FaHome,
@@ -14,38 +15,94 @@ import {
 } from "react-icons/fa";
 
 const MyAccommodation = () => {
-  const [file, setFile] = useState(null);
-  const [fileName, setFileName] = useState("");
+
+  const [formData, setFormData] = useState({
+    propertyName: "",
+    address: {
+      area: "",
+      city: "",
+      state: "",
+      pinCode: "",
+    },
+    photos: null,
+    description: "",
+    propertyType: "",
+    roomType: "",
+    amenities: {},
+    moreInfo: "",
+    checkInTime: "",
+    checkOutTime: "",
+    maxGuests: "",
+    price: "",
+  });
   const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    setFile(selectedFile);
-    setFileName(selectedFile ? selectedFile.name : "");
+    setFormData({ ...formData, photos: selectedFile });
   };
 
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
 
-  const handleFormSubmit = (e) => {
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCheckboxChange = (e) => {
+    setFormData({
+      ...formData,
+      amenities: {
+        ...formData.amenities,
+        [e.target.name]: e.target.checked,
+      },
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Do something with the file, like uploading it to a server
-    if (file) {
-      console.log("File uploaded:", file);
-      // You can include file upload logic here (e.g., using fetch API)
-    } else {
-      console.log("No file selected");
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const formDataToSend = new FormData();
+      formDataToSend.append("propertyName", formData.propertyName);
+      formDataToSend.append("address", JSON.stringify(formData.address));
+      formDataToSend.append("photos", formData.photos);
+      formDataToSend.append("description", formData.description);
+      formDataToSend.append("propertyType", formData.propertyType);
+      formDataToSend.append("roomType", formData.roomType);
+      formDataToSend.append("amenities", JSON.stringify(formData.amenities));
+      formDataToSend.append("moreInfo", formData.moreInfo);
+      formDataToSend.append("checkInTime", formData.checkInTime);
+      formDataToSend.append("checkOutTime", formData.checkOutTime);
+      formDataToSend.append("maxGuests", formData.maxGuests);
+      formDataToSend.append("price", formData.price);
+
+      const res = await axios.post("http://localhost:5000/api/accomod/addaccomodation", formDataToSend, config);
+      console.log("Accommodation added successfully:", res.data);
+      // Optionally, you can redirect the user or show a success message here
+    } catch (err) {
+      console.error("Error adding accommodation:", err.response.data);
+      // Optionally, you can display an error message to the user
     }
   };
 
   return (
     <Container>
       <h1>Add Accommodation</h1>
-      <Form onSubmit={handleFormSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="propertyName">
           <Form.Label>Property Name *</Form.Label>
-          <Form.Control required type="text" placeholder="Title" />
+          <Form.Control required
+            type="text"
+            placeholder="Property Name"
+            name="propertyName"
+            value={formData.propertyName}
+            onChange={handleInputChange} />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="address">
@@ -56,28 +113,56 @@ const MyAccommodation = () => {
               type="text"
               className="mr-3"
               placeholder="Area"
-              style={{ width: "25%" }}
+              name="area"
+              value={formData.address.area}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  address: { ...formData.address, area: e.target.value },
+                })
+              }
             />
             <Form.Control
               required
               type="text"
               className="mr-3"
               placeholder="City"
-              style={{ width: "25%" }}
+              name="city"
+              value={formData.address.city}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  address: { ...formData.address, city: e.target.value },
+                })
+              }
             />
             <Form.Control
               required
               type="text"
               className="mr-3"
               placeholder="State"
-              style={{ width: "25%" }}
+              name="state"
+              value={formData.address.state}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  address: { ...formData.address, state: e.target.value },
+                })
+              }
             />
             <Form.Control
               required
               type="text"
               className="mr-3"
               placeholder="Pin code"
-              style={{ width: "25%" }}
+              name="pinCode"
+              value={formData.address.pinCode}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  address: { ...formData.address, pinCode: e.target.value },
+                })
+              }
             />
           </div>
         </Form.Group>
@@ -94,8 +179,7 @@ const MyAccommodation = () => {
             />
           </div>
           <div className="border d-flex p-2" style={{ width: "40%" }}>
-            {fileName}
-            {/* <input type="file" /> */}
+            {formData.photos ? formData.photos.name : "No file selected"}
             <Button className="btn btn-success" onClick={handleButtonClick}>
               Upload Photo
             </Button>
@@ -109,8 +193,12 @@ const MyAccommodation = () => {
             as="textarea"
             rows={3}
             placeholder="Describe your place"
+      
+            onChange={handleInputChange}
           />
         </Form.Group>
+
+        
 
         <Form.Group className="mb-3" controlId="propertyType">
           <Form.Label>Property Type *</Form.Label>
@@ -192,6 +280,7 @@ const MyAccommodation = () => {
             </Button>
           </div>
         </Form.Group>
+
 
         <Form.Group className="mb-3" controlId="amenities">
           <Form.Label>Amenities *</Form.Label>
@@ -281,44 +370,59 @@ const MyAccommodation = () => {
               as="textarea"
               rows={3}
               placeholder="Describe your place"
+              value={formData.moreInfo}
+              onChange={handleInputChange}
             />
           </Form.Group>
           <div className="d-flex">
-            <div style={{width:'25%'}}>
-              {" "}
-              <label htmlFor="">Check-In Time</label>
-            </div>
+            <Form.Group className="mb-3" controlId="checkInTime">
+              <Form.Label>Check-In Time *</Form.Label>
+              <Form.Control
+                required
+                type="time"
+                placeholder="Check-In Time"
+                name="checkInTime"
+                value={formData.checkInTime}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
 
-            <div style={{width:'25%'}}>
-              {" "}
-              <label htmlFor="">Check-Out Time</label>
-            </div>
-            <div style={{width:'25%'}}>
-              {" "}
-              <label htmlFor="">Maximum Guests</label>
-            </div>
-            <div>
-              {" "}
-              <label htmlFor="">Price</label>
-            </div>
-          </div>
-          <div className="d-flex">
-            <div style={{width:'25%'}}>
-              {" "}
-              <input type="time"style={{width:'50%'}}/>
-            </div>
-            <div style={{width:'25%'}}>
-              {" "}
-              <input type="time"style={{width:'50%'}} />
-            </div>
-            <div style={{width:'25%'}}>
-              {" "}
-              <input type="text"style={{width:'50%'}} />
-            </div>
-            <div style={{width:'25%'}}>
-              {" "}
-              <input type="text"style={{width:'50%'}} />
-            </div>
+            <Form.Group className="mb-3" controlId="checkOutTime">
+              <Form.Label>Check-Out Time *</Form.Label>
+              <Form.Control
+                required
+                type="time"
+                placeholder="Check-Out Time"
+                name="checkOutTime"
+                value={formData.checkOutTime}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="maxGuests">
+              <Form.Label>Maximum Guests *</Form.Label>
+              <Form.Control
+                required
+                type="number"
+                placeholder="Maximum Guests"
+                name="maxGuests"
+                value={formData.maxGuests}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="price">
+              <Form.Label>Price *</Form.Label>
+              <Form.Control
+                required
+                type="number"
+                placeholder="Price"
+                name="price"
+                value={formData.price}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
           </div>
         </Form.Group>
 
