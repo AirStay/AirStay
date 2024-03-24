@@ -38,34 +38,44 @@ const Navbar = () => {
               <input type="text" className="input mx-1 border-0 bg-transparent" style={{ padding: '5px', borderRadius: '100px', minWidth: '120px' }} placeholder="Add guests" />
               <button type="button" className="mx-1 btn border-0 bg-transparent"><img src="/assets/magnifying-glass.png" width="25" alt="" /></button>
             </div>
-            {!localStorage.getItem('token') ? <div><button type="button" className="mx-1 btn border-0 bg-transparent" onClick={handleShow}>
-              <img src="/assets/filter.png" width="30" alt="" />
-            </button>
-            <Dropdown>
-              <Dropdown.Toggle variant="transparent" id="dropdown-basic">
-                <img src="/assets/loginicon.png" width="30" alt="" />
-              </Dropdown.Toggle>
 
-              <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/login">Login</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/register">Signup</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown></div>:<div><button type="button" className="mx-1 btn border-0 bg-transparent" onClick={handleShow}>
-              <img src="/assets/filter.png" width="30" alt="" />
-            </button>
-            <Dropdown>
-              <Dropdown.Toggle variant="transparent" id="dropdown-basic">
-                <img src="/assets/loginicon.png" width="30" alt="" />
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/profile">My Account</Dropdown.Item>
-                <Dropdown.Item as={Button} onClick={handleLogout} >Logout</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown></div>} 
+            {/* Conditional rendering for login/logout and filter buttons */}
+            {!localStorage.getItem('token') ? (
+              <div className="d-flex align-items-center">
+                <button type="button" className="mx-1 btn border-0 bg-transparent" onClick={handleShow}>
+                  <img src="/assets/filter.png" width="30" alt="" />
+                </button>
+                <Dropdown>
+                  <Dropdown.Toggle variant="transparent" id="dropdown-basic">
+                    <img src="/assets/loginicon.png" width="30" alt="" />
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item as={Link} to="/login">Login</Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/register">Signup</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+            ) : (
+              <div className="d-flex align-items-center">
+                <button type="button" className="mx-1 btn border-0 bg-transparent" onClick={handleShow}>
+                  <img src="/assets/filter.png" width="30" alt="" />
+                </button>
+                <Dropdown>
+                  <Dropdown.Toggle variant="transparent" id="dropdown-basic">
+                    <img src="/assets/loginicon.png" width="30" alt="" />
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item as={Link} to="/profile">My Account</Dropdown.Item>
+                    <Dropdown.Item as={Button} onClick={handleLogout}>Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+            )}
           </div>
         </div>
       </nav>
+
+      {/* Render the Filter component based on showModal state */}
       {showModal && <Filter ref={filterRef} showModal={showModal} handleClose={handleClose} onClearFilters={handleClearFilters} />}
     </div>
   );
