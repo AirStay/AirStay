@@ -16,6 +16,17 @@ import {
 
 const MyAccommodation = () => {
 
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedType1, setSelectedType1] = useState(''); // State to track selected property type
+
+  const handleButtonClick = (type) => {
+    setSelectedType(type === selectedType ? '' : type); // Toggle selected type
+  };
+  
+  const handleButtonClick2 = (type) => {
+    setSelectedType1(type === selectedType1 ? '' : type); // Toggle selected type
+  };
+
   const [formData, setFormData] = useState({
     propertyName: "",
     address: {
@@ -42,9 +53,9 @@ const MyAccommodation = () => {
     setFormData({ ...formData, photos: selectedFile });
   };
 
-  const handleButtonClick = () => {
-    fileInputRef.current.click();
-  };
+  // const handleButtonClick = () => {
+  //   fileInputRef.current.click();
+  // };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -200,7 +211,7 @@ const MyAccommodation = () => {
 
         
 
-        <Form.Group className="mb-3" controlId="propertyType">
+        {/* <Form.Group className="mb-3" controlId="propertyType">
           <Form.Label>Property Type *</Form.Label>
           <div className="d-flex">
             <Button
@@ -244,12 +255,53 @@ const MyAccommodation = () => {
               <span style={{ marginLeft: "5px" }}>Hotel</span>
             </Button>
           </div>
-        </Form.Group>
+        </Form.Group> */}
+
+<Form.Group className="mb-3" controlId="propertyType">
+      <Form.Label>Property Type *</Form.Label>
+      <div className="d-flex">
+        <Button
+          variant={selectedType === 'house' ? 'primary' : 'outline border'}
+          style={{ flex: '1', marginRight: '10px',color:'black', backgroundColor: 'transparent' }}
+          onClick={() => handleButtonClick('house')}
+        >
+          <FaHome size={20} />
+          <span style={{ marginLeft: '5px' }}>House</span>
+        </Button>
+        {/* Repeat similar code for other buttons */}
+        <Button
+          variant={selectedType === 'flat' ? 'primary' : 'outline border'}
+          style={{ flex: '1', marginRight: '10px',color:'black', backgroundColor: 'transparent'}}
+          onClick={() => handleButtonClick('flat')}
+        >
+          <FaBuilding size={20} />
+          <span style={{ marginLeft: '5px' }}>Flat</span>
+        </Button>
+
+        <Button
+          variant={selectedType === 'guest' ? 'primary' : 'outline border'}
+          style={{ flex: '1', marginRight: '10px',color:'black', backgroundColor: 'transparent'}}
+          onClick={() => handleButtonClick('guest')}
+        >
+          <FaBuilding size={20} />
+          <span style={{ marginLeft: '5px' }}>Guest House</span>
+        </Button>
+        <Button
+          variant={selectedType === 'hotel' ? 'primary' : 'outline border'}
+          style={{ flex: '1', marginRight: '10px',color:'black', backgroundColor: 'transparent'}}
+          onClick={() => handleButtonClick('hotel')}
+        >
+          <FaBuilding size={20} />
+          <span style={{ marginLeft: '5px' }}>Hotel</span>
+        </Button>
+        {/* Add buttons for Guest House and Hotel similarly */}
+      </div>
+    </Form.Group>
 
         <Form.Group className="mb-3" controlId="roomType">
           <Form.Label>Room Type *</Form.Label>
           <div className="d-flex">
-            <Button
+            {/* <Button
               variant="outline border"
               style={{
                 flex: "1",
@@ -271,21 +323,49 @@ const MyAccommodation = () => {
               <FaBuilding size={20} />
               <span style={{ marginLeft: "5px" }}>Room</span>
             </Button>
+            // <Button
+            //   variant="outline border"
+            //   style={{ flex: "1", backgroundColor: "transparent" }}
+            // >
+            //   <FaHotel size={20} />
+            //   <span style={{ marginLeft: "5px" }}>Any Type</span>
+            // </Button> */}
             <Button
-              variant="outline border"
-              style={{ flex: "1", backgroundColor: "transparent" }}
-            >
-              <FaHotel size={20} />
-              <span style={{ marginLeft: "5px" }}>Any Type</span>
-            </Button>
+          variant={selectedType1 === 'entire' ? 'primary' : 'outline border'}
+          style={{ flex: '1', marginRight: '10px',color:'black', backgroundColor: 'transparent'}}
+          onClick={() => handleButtonClick2('entire')}
+        >
+          <FaBuilding size={20} />
+          <span style={{ marginLeft: '5px' }}>Entire room</span>
+        </Button>
+
+        <Button
+          variant={selectedType1 === 'room' ? 'primary' : 'outline border'}
+          style={{ flex: '1', marginRight: '10px',color:'black', backgroundColor: 'transparent'}}
+          onClick={() => handleButtonClick2('room')}
+        >
+          <FaBuilding size={20} />
+          <span style={{ marginLeft: '5px' }}>Room</span>
+        </Button>
+
+        <Button
+          variant={selectedType1 === 'any' ? 'primary' : 'outline border'}
+          style={{ flex: '1', marginRight: '10px',color:'black', backgroundColor: 'transparent'}}
+          onClick={() => handleButtonClick2('any')}
+        >
+          <FaBuilding size={20} />
+          <span style={{ marginLeft: '5px' }}>Any Type</span>
+        </Button>
           </div>
+
+          
         </Form.Group>
 
 
         <Form.Group className="mb-3" controlId="amenities">
           <Form.Label>Amenities *</Form.Label>
           <div className="mb-3 d-flex">
-            <div className="form-check mr-5">
+            <div className="form-check mr-3">
               <input
                 className="form-check-input"
                 type="checkbox"
