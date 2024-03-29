@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import MyAccommodation from './MyAccomodation';
+import Accommodation from './Accomodation';
 // Import CSS file for styles (if needed)
 
 const UserInfo = ({ fullName, emailAddress, phoneNumber }) => {
@@ -15,9 +15,9 @@ const UserInfo = ({ fullName, emailAddress, phoneNumber }) => {
 
 
 const EditProfileForm = ({ onClose }) => {
-  const [fullName, setFullName] = useState('Your Full Name');
-  const [emailAddress, setEmailAddress] = useState('your.email@example.com');
-  const [phoneNumber, setPhoneNumber] = useState('1234567890');
+  const [fullName, setFullName] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -240,7 +240,7 @@ const Profile = () => {
 
         {activeButton === 'accommodation' && (
           <div className="profile-details mt-4">
-            <MyAccommodation/>
+            <Accommodation/>
           </div>
         )}
       </div>
