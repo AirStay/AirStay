@@ -54,9 +54,9 @@ const MyAccommodation = () => {
     setFormData({ ...formData, photos: selectedFile });
   };
 
-  // const handleButtonClick = () => {
-  //   fileInputRef.current.click();
-  // };
+  const handleBtnClick= () => {
+    fileInputRef.current.click();
+  };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -191,8 +191,8 @@ const MyAccommodation = () => {
             />
           </div>
           <div className="border d-flex p-2" style={{ width: "40%" }}>
-            {formData.photos ? formData.photos.name : "No file selected"}
-            <Button className="btn btn-success" onClick={handleButtonClick}>
+            {formData.photos ? formData.photos.name : "No file Selected"}
+            <Button className="btn btn-success  ml-3" onClick={handleBtnClick}>
               Upload Photo
             </Button>
           </div>
@@ -444,7 +444,7 @@ const MyAccommodation = () => {
               </label>
             </div>
           </div>
-          <Form.Group className="mb-3" controlId="description">
+          <Form.Group className="mb-3 ml-3" controlId="description">
             <Form.Label>More Info </Form.Label>
             <Form.Control
               required
@@ -456,7 +456,7 @@ const MyAccommodation = () => {
             />
           </Form.Group>
           <div className="d-flex">
-            <Form.Group className="mb-3" controlId="checkInTime">
+            <Form.Group className="mb-3 ml-3" controlId="checkInTime">
               <Form.Label>Check-In Time *</Form.Label>
               <Form.Control
                 required
@@ -468,7 +468,7 @@ const MyAccommodation = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="checkOutTime">
+            <Form.Group className="mb-3 ml-3" controlId="checkOutTime">
               <Form.Label>Check-Out Time *</Form.Label>
               <Form.Control
                 required
@@ -480,7 +480,7 @@ const MyAccommodation = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="maxGuests">
+            <Form.Group className="mb-3 ml-3" controlId="maxGuests">
               <Form.Label>Maximum Guests *</Form.Label>
               <Form.Control
                 required
@@ -492,7 +492,7 @@ const MyAccommodation = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="price">
+            <Form.Group className="mb-3 ml-3" controlId="price">
               <Form.Label>Price *</Form.Label>
               <Form.Control
                 required
