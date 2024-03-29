@@ -51,21 +51,35 @@ const MyAccommodation = () => {
   };
 
   const handleCheckboxChange = (e) => {
-    setFormData({
-      ...formData,
+    const { name, checked } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       amenities: {
-        ...formData.amenities,
-        [e.target.name]: e.target.checked,
+        ...prevFormData.amenities,
+        [name]: checked,
       },
-    });
+    }));
+  };
+  
+
+
+  const handlePropertyTypeChange = (type) => {
+    setFormData({ ...formData, propertyType: type });
+  };
+
+  const handleRoomTypeChange = (type) => {
+    setFormData({ ...formData, roomType: type });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
+    const { title, company, state, city, address, description, requirements } = formData;
     try {
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
+          "auth-token": token
         },
       };
       const formDataToSend = new FormData();
@@ -84,13 +98,13 @@ const MyAccommodation = () => {
 
       const res = await axios.post("http://localhost:5000/api/accomod/addaccomodation", formDataToSend, config);
       console.log("Accommodation added successfully:", res.data);
-      // Optionally, you can redirect the user or show a success message here
+
     } catch (err) {
       console.error("Error adding accommodation:", err.response.data);
-      // Optionally, you can display an error message to the user
+      
     }
   };
-
+//hello
   return (
     <Container>
       <h1>Add Accommodation</h1>
@@ -105,7 +119,7 @@ const MyAccommodation = () => {
             onChange={handleInputChange} />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="address">
+        <Form.Group className="mb-3" controlId="address" name="address">
           <Form.Label>Address *</Form.Label>
           <div className="d-flex">
             <Form.Control
@@ -176,6 +190,7 @@ const MyAccommodation = () => {
               onChange={handleFileChange}
               style={{ display: "none" }}
               required
+              name="photos"
             />
           </div>
           <div className="border d-flex p-2" style={{ width: "40%" }}>
@@ -193,93 +208,79 @@ const MyAccommodation = () => {
             as="textarea"
             rows={3}
             placeholder="Describe your place"
-      
+            name="description"
             onChange={handleInputChange}
           />
         </Form.Group>
-
         
 
         <Form.Group className="mb-3" controlId="propertyType">
-          <Form.Label>Property Type *</Form.Label>
-          <div className="d-flex">
-            <Button
-              variant="outline border"
-              style={{
-                flex: "1",
-                marginRight: "10px",
-                backgroundColor: "transparent",
-              }}
-            >
-              <FaHome size={20} />
-              <span style={{ marginLeft: "5px" }}>House</span>
-            </Button>
-            <Button
-              variant="outline border"
-              style={{
-                flex: "1",
-                marginRight: "10px",
-                backgroundColor: "transparent",
-              }}
-            >
-              <FaBuilding size={20} />
-              <span style={{ marginLeft: "5px" }}>Flat</span>
-            </Button>
-            <Button
-              variant="outline border"
-              style={{
-                flex: "1",
-                marginRight: "10px",
-                backgroundColor: "transparent",
-              }}
-            >
-              <FaBed size={20} />
-              <span style={{ marginLeft: "5px" }}>Guest House</span>
-            </Button>
-            <Button
-              variant="outline border"
-              style={{ flex: "1", backgroundColor: "transparent" }}
-            >
-              <FaHotel size={20} />
-              <span style={{ marginLeft: "5px" }}>Hotel</span>
-            </Button>
-          </div>
-        </Form.Group>
+        <Form.Label>Property Type *</Form.Label>
+        <div className="d-flex">
+          <Button
+            variant="outline border"
+            style={{ flex: "1", marginRight: "10px", backgroundColor: formData.propertyType === "House" ? "#ddd" : "transparent" }}
+            onClick={() => handlePropertyTypeChange("House")}
+          >
+            <FaHome size={20} />
+            <span style={{ marginLeft: "5px" }}>House</span>
+          </Button>
+          <Button
+            variant="outline border"
+            style={{ flex: "1", marginRight: "10px", backgroundColor: formData.propertyType === "Flat" ? "#ddd" : "transparent" }}
+            onClick={() => handlePropertyTypeChange("Flat")}
+          >
+            <FaBuilding size={20} />
+            <span style={{ marginLeft: "5px" }}>Flat</span>
+          </Button>
+          <Button
+            variant="outline border"
+            style={{ flex: "1", marginRight: "10px", backgroundColor: formData.propertyType === "Guest House" ? "#ddd" : "transparent" }}
+            onClick={() => handlePropertyTypeChange("Guest House")}
+          >
+            <FaBed size={20} />
+            <span style={{ marginLeft: "5px" }}>Guest House</span>
+          </Button>
+          <Button
+            variant="outline border"
+            style={{ flex: "1", backgroundColor: formData.propertyType === "Hotel" ? "#ddd" : "transparent" }}
+            onClick={() => handlePropertyTypeChange("Hotel")}
+          >
+            <FaHotel size={20} />
+            <span style={{ marginLeft: "5px" }}>Hotel</span>
+          </Button>
+        </div>
+      </Form.Group>
 
-        <Form.Group className="mb-3" controlId="roomType">
-          <Form.Label>Room Type *</Form.Label>
-          <div className="d-flex">
-            <Button
-              variant="outline border"
-              style={{
-                flex: "1",
-                marginRight: "10px",
-                backgroundColor: "transparent",
-              }}
-            >
-              <FaHome size={20} />
-              <span style={{ marginLeft: "5px" }}>Entire room</span>
-            </Button>
-            <Button
-              variant="outline border"
-              style={{
-                flex: "1",
-                marginRight: "10px",
-                backgroundColor: "transparent",
-              }}
-            >
-              <FaBuilding size={20} />
-              <span style={{ marginLeft: "5px" }}>Room</span>
-            </Button>
-            <Button
-              variant="outline border"
-              style={{ flex: "1", backgroundColor: "transparent" }}
-            >
-              <FaHotel size={20} />
-              <span style={{ marginLeft: "5px" }}>Any Type</span>
-            </Button>
-          </div>
-        </Form.Group>
+      <Form.Group className="mb-3" controlId="roomType">
+        <Form.Label>Room Type *</Form.Label>
+        <div className="d-flex">
+          <Button
+            variant="outline border"
+            style={{ flex: "1", marginRight: "10px", backgroundColor: formData.roomType === "Entire room" ? "#ddd" : "transparent" }}
+            onClick={() => handleRoomTypeChange("Entire room")}
+          >
+            <FaHome size={20} />
+            <span style={{ marginLeft: "5px" }}>Entire room</span>
+          </Button>
+          <Button
+            variant="outline border"
+            style={{ flex: "1", marginRight: "10px", backgroundColor: formData.roomType === "Room" ? "#ddd" : "transparent" }}
+            onClick={() => handleRoomTypeChange("Room")}
+          >
+            <FaBuilding size={20} />
+            <span style={{ marginLeft: "5px" }}>Room</span>
+          </Button>
+          <Button
+            variant="outline border"
+            style={{ flex: "1", backgroundColor: formData.roomType === "Any Type" ? "#ddd" : "transparent" }}
+            onClick={() => handleRoomTypeChange("Any Type")}
+          >
+            <FaHotel size={20} />
+            <span style={{ marginLeft: "5px" }}>Any Type</span>
+          </Button>
+        </div>
+      </Form.Group>
 
 
         <Form.Group className="mb-3" controlId="amenities">
@@ -291,6 +292,7 @@ const MyAccommodation = () => {
                 type="checkbox"
                 value=""
                 id="wifi"
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="wifi">
                 <FaWifi /> Wi-Fi
@@ -302,6 +304,7 @@ const MyAccommodation = () => {
                 type="checkbox"
                 value=""
                 id="ac"
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="ac">
                 <FaWifi /> AC
@@ -313,6 +316,7 @@ const MyAccommodation = () => {
                 type="checkbox"
                 value=""
                 id="tv"
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="tv">
                 <FaTv /> TV
@@ -324,6 +328,7 @@ const MyAccommodation = () => {
                 type="checkbox"
                 value=""
                 id="parking"
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="parking">
                 <FaParking /> Free Parking
@@ -335,6 +340,7 @@ const MyAccommodation = () => {
                 type="checkbox"
                 value=""
                 id="kitchen"
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="kitchen">
                 <FaUtensils /> Kitchen
@@ -346,6 +352,7 @@ const MyAccommodation = () => {
                 type="checkbox"
                 value=""
                 id="washingMachine"
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="washingMachine">
                 <FaHandsWash /> Washing Machine
@@ -357,6 +364,7 @@ const MyAccommodation = () => {
                 type="checkbox"
                 value=""
                 id="pool"
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="pool">
                 <FaSwimmingPool /> Pool
@@ -370,7 +378,6 @@ const MyAccommodation = () => {
               as="textarea"
               rows={3}
               placeholder="Describe your place"
-              value={formData.moreInfo}
               onChange={handleInputChange}
             />
           </Form.Group>
