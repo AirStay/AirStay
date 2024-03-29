@@ -77,17 +77,19 @@ const accommodationSchema = new Schema({
   address: {
     area: {
       type: String,
+      required: true
     },
     city: {
       type: String,
-
+      required: true
     },
     state: {
       type: String,
-      
+      required: true
     },
     pinCode: {
       type: String,
+      required: true
     }
   },
   image: {

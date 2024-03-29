@@ -225,10 +225,10 @@ const upload = multer({ storage: storage });
 // Add accommodation
 router.post('/addaccomodation', fetchuser, upload.single('image'), [
   body('propertyName', 'Enter a valid property name').isLength({ min: 3 }),
-  body('address.area', 'Enter a valid area'),
-  body('address.city', 'Enter a valid city'),
-  body('address.state', 'Enter a valid state'),
-  body('address.pinCode', 'Enter a valid pin code'),
+  body('address.area', 'Enter a valid area').isLength({ min: 3 }),
+  body('address.city', 'Enter a valid city').isLength({ min: 3 }),
+  body('address.state', 'Enter a valid state').isLength({ min: 3 }),
+  body('address.pinCode', 'Enter a valid pin code').isLength({ min: 6 }),
   body('description', 'Enter a valid description').isLength({ min: 10 }),
   body('propertyType', 'Enter a valid property type').isIn(['House', 'Flat', 'Guest House', 'Hotel']),
   body('roomType', 'Enter a valid room type').isIn(['Entire room', 'Room', 'Any Type']),
