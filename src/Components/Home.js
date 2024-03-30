@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Showacco from './Showacco';
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
           <Link to="#" className="btn btn-primary">Go somewhere</Link>
         </div>
       </div>
+      
     </div>
   );
 }

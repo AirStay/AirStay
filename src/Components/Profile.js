@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accommodation from './Accomodation';
+import Showacco from './Showacco';
 // Import CSS file for styles (if needed)
 
 const UserInfo = ({ fullName, emailAddress, phoneNumber }) => {
@@ -241,6 +242,7 @@ const Profile = () => {
         {activeButton === 'accommodation' && (
           <div className="profile-details mt-4">
             <Accommodation/>
+          <Showacco/>
           </div>
         )}
       </div>
