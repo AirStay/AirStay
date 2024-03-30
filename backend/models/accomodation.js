@@ -10,6 +10,18 @@ const accommodationSchema = new Schema({
     type: String,
     required: true
   },
+  city:{
+    type: String,
+    required: true
+  },
+  state:{
+    type: String,
+    required: true
+  },
+  pincode:{
+    type: String,
+    required: true
+  },
   image: {
     type: String, // Store the image path or URL
     required: true

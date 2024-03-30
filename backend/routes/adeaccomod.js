@@ -236,7 +236,7 @@ router.post('/addaccomodation', fetchuser, upload.single('image'), [
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { propertyName, address, description, propertyType, roomType, amenities, moreInfo, checkInTime, checkOutTime, maxGuests, price } = req.body;
+    const { propertyName, address, city, state, pincode, description, propertyType, roomType, amenities, moreInfo, checkInTime, checkOutTime, maxGuests, price } = req.body;
 
     // Get the path of the uploaded image
     const image = req.file.path;
@@ -244,6 +244,9 @@ router.post('/addaccomodation', fetchuser, upload.single('image'), [
     const accommodation = new Accommodation({
       propertyName,
       address,
+      city,
+      state,
+      pincode,
       image, // Store the path of the uploaded image
       description,
       propertyType,
