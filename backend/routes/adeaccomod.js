@@ -268,6 +268,15 @@ router.post('/addaccomodation', fetchuser, upload.single('image'), [
   }
 });
 
-// Other routes...
+router.get('/useraccommodations', fetchuser, async (req, res) => {
+  try {
+    const accommodations = await Accommodation.find({ user: req.user.id });
+
+    res.json(accommodations);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 module.exports = router;

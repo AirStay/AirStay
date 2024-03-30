@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Form, Button, Container } from "react-bootstrap";
+import { useNavigate, Link } from 'react-router-dom'
 import axios from "axios";
 import {
   FaBed,
@@ -15,6 +16,7 @@ import {
 } from "react-icons/fa";
 
 const MyAccommodation = () => {
+  let navigate = useNavigate();
   const [formData, setFormData] = useState({
     propertyName: "",
     address: "",
@@ -53,6 +55,8 @@ const MyAccommodation = () => {
     }));
   };
 
+  
+
   const handlePropertyTypeChange = (type) => {
     setFormData({ ...formData, propertyType: type });
   };
@@ -64,6 +68,8 @@ const MyAccommodation = () => {
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFormData({ ...formData, image: selectedFile });
+
+    
   };
 
   const handleSubmit = async (e) => {
@@ -100,6 +106,7 @@ const MyAccommodation = () => {
       });
 
       console.log(response.data);
+      navigate("/");
     } catch (error) {
       console.error("Error adding accommodation:", error);
     }
