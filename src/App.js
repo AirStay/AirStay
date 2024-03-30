@@ -11,6 +11,7 @@ import Profile from './Components/Profile';
 import Payment from './Components/Payment';
 import MyAccommodation from './Components/MyAccomodation';
 import Showacco from './Components/Showacco';
+import Accoddbook from './Components/Accodbook';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           </Routes>
         </div>
         <Filter />
+        <Accoddbook/>
       </>
     </Router>
   );
