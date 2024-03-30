@@ -10,7 +10,9 @@ import Home from './Components/Home';
 import Profile from './Components/Profile';
 import Payment from './Components/Payment';
 import MyAccommodation from './Components/MyAccomodation';
-import Showacco from './Components/Showacco';
+
+import Paymentsuccess from './Components/Paymentsuccess';
+
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
           </Routes>
         </div>
         <Filter />
+       {/* <Payment /> */}
+       <Paymentsuccess/>  
       </>
     </Router>
   );
