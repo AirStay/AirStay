@@ -5,7 +5,7 @@ function Accodbook() {
     <div>
       <div className='container'>
         <p>Accomodation Name</p>
-        <p>Hotel</p>
+        
       </div>
     </div>
   )
