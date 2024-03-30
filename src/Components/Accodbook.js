@@ -4,7 +4,7 @@ function Accodbook() {
   return (
     <div>
       <div className='container'>
-        <p>Accomodation N</p>
+        <p>Accomodation Name</p>
       </div>
     </div>
   )
