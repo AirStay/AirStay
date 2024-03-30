@@ -13,6 +13,9 @@ import MyAccommodation from './Components/MyAccomodation';
 import Showacco from './Components/Showacco';
 import Accoddbook from './Components/Accodbook';
 
+import Paymentsuccess from './Components/Paymentsuccess';
+
+
 function App() {
   return (
     <Router> {/* Wrap your components with Router */}
@@ -30,6 +33,8 @@ function App() {
         </div>
         <Filter />
         <Accoddbook/>
+       {/* <Payment /> */}
+       <Paymentsuccess/>  
       </>
     </Router>
   );

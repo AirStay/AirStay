@@ -27,7 +27,7 @@ const Navbar = () => {
       <nav className="navbar bg-body-tertiary">
         <div className="container d-flex justify-content-between align-items-center">
           <Link className="navbar-brand" to="/">
-            <img src="/assets/logo.png" alt="Bootstrap" width="100" />
+            <img src="/assets/airstay.gif" alt="Bootstrap" width="60" />
           </Link>
 
           <div className="d-flex align-items-center">
