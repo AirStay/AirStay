@@ -9,7 +9,8 @@ function AccommodationCard({ accommodation }) {
       <Card.Header>{accommodation.propertyName}</Card.Header>
       <Card.Body>
         <div>
-          {accommodation.image && <img src={accommodation.image} alt="Accommodation" style={{ maxWidth: "100%" }} />}
+          {accommodation.image && <img src={accommodation.image} alt="Accommodation"  />}
+          {console.log(accommodation.image)}
         </div>
         <Card.Text>
           <strong>Address:</strong> {accommodation.address}, {accommodation.city}, {accommodation.state}, {accommodation.pincode}
@@ -71,7 +72,9 @@ function UserAccommodations() {
       <h1>Your Accommodations</h1>
       {accommodations.map(accommodation => (
         <AccommodationCard key={accommodation._id} accommodation={accommodation} />
+        
       ))}
+      
     </div>
   );
 }

@@ -213,7 +213,7 @@ const { body, validationResult } = require('express-validator');
 // Multer storage configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Set the destination folder for uploaded images
+    cb(null, './src/Components/uploads'); // Set the destination folder for uploaded images
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname); // Set unique filenames for uploaded images
