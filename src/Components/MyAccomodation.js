@@ -473,12 +473,7 @@
   const MyAccommodation = () => {
     const [formData, setFormData] = useState({
       propertyName: "",
-      address: {
-        area: "",
-        city: "",
-        state: "",
-        pinCode: "",
-      },
+      address: "",
       description: "",
       propertyType: "",
       roomType: "",
@@ -528,15 +523,11 @@
       e.preventDefault();
 
       const token = localStorage.getItem('token');
-      const { propertyName, image, description, propertyType, roomType, amenities, moreInfo, checkInTime, checkOutTime, maxGuests, price } = formData;
-      const { area, city, state, pinCode } = formData.address;
+      const { propertyName, image, address, description, propertyType, roomType, amenities, moreInfo, checkInTime, checkOutTime, maxGuests, price } = formData;
 
       const formDataToSend = new FormData();
       formDataToSend.append('propertyName', propertyName);
-      formDataToSend.append('address.area', area);
-      formDataToSend.append('address.city', city);
-      formDataToSend.append('address.state', state);
-      formDataToSend.append('address.pinCode', pinCode);
+      formDataToSend.append('address', address);
       formDataToSend.append('description', description);
       formDataToSend.append('propertyType', propertyType);
       formDataToSend.append('roomType', roomType);
@@ -579,6 +570,18 @@
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="address" name="address">
+            <Form.Label>Address *</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              rows={3}
+              placeholder="Address"
+              name="address"
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+
+          {/* <Form.Group className="mb-3" controlId="address" name="address">
             <Form.Label>Address *</Form.Label>
             <div className="d-flex">
               <Form.Control
@@ -638,7 +641,7 @@
                 }
               />
             </div>
-          </Form.Group>
+          </Form.Group> */}
 
           {/* <Form.Group className="mb-3" controlId="photos">
             <Form.Label>Photos *</Form.Label>
