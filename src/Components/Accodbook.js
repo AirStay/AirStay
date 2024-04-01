@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Accodbook = () => {
   const [fromDate, setFromDate] = useState('');
@@ -64,7 +65,7 @@ const Accodbook = () => {
           <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
         </label>
         <br />
-        <button className='btn btn-primary mt-3' type="submit">Book</button>
+        <button className='btn-primary'><Link to="/payment">Book</Link></button>
       </form>
     </div>
     </div>

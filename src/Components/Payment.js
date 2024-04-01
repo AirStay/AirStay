@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import Card from 'react-credit-cards';
+import { Link } from 'react-router-dom';
 
 
 import { formatCreditCardNumber, formatCVC, formatExpirationDate } from './Utils';
@@ -55,7 +56,7 @@ const Payment = () => {
                     </div>
                     <input type='hidden' name='issuer' value={issuer} />
                     <div className='form-actions'>
-                        <button className='btn btn-success' style={{ justifyContent: 'center', margin: 'auto', display: 'flex' }}>Submit</button>
+                        <button className='btn btn-success' style={{ justifyContent: 'center', margin: 'auto', display: 'flex' }}><Link to="/paymentsuccess">Pay</Link></button>
                     </div>
                 </form>
             </div>

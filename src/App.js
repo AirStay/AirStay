@@ -12,6 +12,7 @@ import Payment from './Components/Payment';
 import MyAccommodation from './Components/MyAccomodation';
 import Showacco from './Components/Showacco';
 import Accodbook from './Components/Accodbook';
+import Paymentsuccess from './Components/Paymentsuccess';
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/myaccomodation" element={<MyAccommodation />} />
             <Route path="/accodbook" element={<Accodbook />} />
-
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/paymentsuccess" element={<Paymentsuccess />} />
           </Routes>
         </div>
         <Filter />
