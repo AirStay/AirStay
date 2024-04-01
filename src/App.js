@@ -1,6 +1,6 @@
 // App.js
 import './App.css';
-import { BrowserRouter as Router, Routes , Route } from 'react-router-dom'; // Import BrowserRouter
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import BrowserRouter
 // import Login from './Components/Login';
 import Navbar from './Components/Navbar';
 import Login from './Components/Login';
@@ -21,13 +21,13 @@ function App() {
         {/* <Payment/> */}
         <div className="container">
           <Routes>
-            <Route path='/profile' element={<Profile/>} />
-          <Route path="/register" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/myaccomodation" element={<MyAccommodation />} />
-          <Route path="/accodbook" element={<Accodbook />} />
-         
+            <Route path='/profile' element={<Profile />} />
+            <Route path="/register" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/myaccomodation" element={<MyAccommodation />} />
+            <Route path="/accodbook" element={<Accodbook />} />
+
           </Routes>
         </div>
         <Filter />
