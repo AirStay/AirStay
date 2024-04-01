@@ -11,6 +11,7 @@ import Profile from './Components/Profile';
 import Payment from './Components/Payment';
 import MyAccommodation from './Components/MyAccomodation';
 import Showacco from './Components/Showacco';
+import Accodbook from './Components/Accodbook';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/myaccomodation" element={<MyAccommodation />} />
+          <Route path="/accodbook" element={<Accodbook />} />
          
           </Routes>
         </div>

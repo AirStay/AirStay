@@ -74,4 +74,15 @@ router.get('/useraccommodations', fetchuser, async (req, res) => {
   }
 });
 
+router.get('/disaccomodations', async (req, res) => {
+  try {
+    const allAccommodations = await Accommodation.find().populate('user', 'name email');
+
+    res.json(allAccommodations);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 module.exports = router;
