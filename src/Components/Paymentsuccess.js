@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MyAccommodation from './MyAccomodation';
+import { Link } from 'react-router-dom';
 
 const Paymentsuccess = () => {
     useEffect(() => {
@@ -100,7 +101,7 @@ const Paymentsuccess = () => {
                 <h1 className="text-2xl font-bold mb-4">Payment Successfully Completed!</h1>
                 <p className="text-lg mb-4">Thank you for your payment.</p>
                 <button className="btn btn-success m-2" onClick={handleAddPlace}>
-                    Go to My Booking
+                    <Link to="/Mybooking">Go to My Booking</Link>
                 </button>
             </div>
             {showForm && <MyAccommodation onClose={() => setShowForm(false)} />}
