@@ -115,7 +115,7 @@ const MyAccommodation = () => {
   return (
     <Container>
       <h1>Add Accommodation</h1>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{ border: '1px solid black', padding: '20px', borderRadius: '15px' ,marginBottom:'2rem',marginTop:'2rem'}}>
         <Form.Group className="mb-3" controlId="propertyName">
           <Form.Label>Property Name *</Form.Label>
           <Form.Control required
@@ -126,9 +126,11 @@ const MyAccommodation = () => {
             onChange={handleInputChange} />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="address" name="address">
+        <Form.Group className="d-flex">
+        <Form.Group className="mb-3 mr-3" controlId="address" name="address">
           <Form.Label>Address *</Form.Label>
           <Form.Control
+          // style={{width:'25%'}}
             required
             type="text"
             rows={3}
@@ -137,9 +139,10 @@ const MyAccommodation = () => {
             onChange={handleInputChange}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="city" name="city">
+        <Form.Group className="mb-3 mr-3" controlId="city" name="city">
           <Form.Label>City *</Form.Label>
           <Form.Control
+          // style={{width:'25%'}}
             required
             type="text"
             rows={3}
@@ -148,9 +151,10 @@ const MyAccommodation = () => {
             onChange={handleInputChange}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="state" name="state">
+        <Form.Group className="mb-3 mr-3" controlId="state" name="state">
           <Form.Label>State *</Form.Label>
           <Form.Control
+          // style={{width:'25%'}}
             required
             type="text"
             rows={3}
@@ -159,9 +163,10 @@ const MyAccommodation = () => {
             onChange={handleInputChange}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="pincode" name="pincode">
+        <Form.Group className="mb-3 mr-3" controlId="pincode" name="pincode">
           <Form.Label>Pincode *</Form.Label>
           <Form.Control
+          // style={{width:'25%'}}
             required
             type="text"
             rows={3}
@@ -169,6 +174,7 @@ const MyAccommodation = () => {
             name="pincode"
             onChange={handleInputChange}
           />
+        </Form.Group>
         </Form.Group>
         <Form.Group controlId="image">
           <Form.Label>Image *</Form.Label>
@@ -183,7 +189,7 @@ const MyAccommodation = () => {
           </div>
           <div className="border d-flex p-2" style={{ width: "40%" }}>
             {formData.image ? formData.image.name : "No file selected"}
-            <Button className="btn btn-success" onClick={handleButtonClick}>
+            <Button className="btn btn-success ml-3" onClick={handleButtonClick}>
               Upload Image
             </Button>
           </div>
@@ -274,7 +280,7 @@ const MyAccommodation = () => {
         <Form.Group className="mb-3" controlId="amenities">
           <Form.Label>Amenities *</Form.Label>
           <div className="mb-3 d-flex">
-            <div className="form-check mr-5">
+            <div className="form-check mr-4">
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -370,7 +376,7 @@ const MyAccommodation = () => {
             />
           </Form.Group>
           <div className="d-flex">
-            <Form.Group className="mb-3" controlId="checkInTime">
+            <Form.Group className="mb-3 mr-3" controlId="checkInTime">
               <Form.Label>Check-In Time *</Form.Label>
               <Form.Control
                 required
@@ -382,7 +388,7 @@ const MyAccommodation = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="checkOutTime">
+            <Form.Group className="mb-3 mr-3" controlId="checkOutTime">
               <Form.Label>Check-Out Time *</Form.Label>
               <Form.Control
                 required
@@ -394,7 +400,7 @@ const MyAccommodation = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="maxGuests">
+            <Form.Group className="mb-3 mr-3" controlId="maxGuests">
               <Form.Label>Maximum Guests *</Form.Label>
               <Form.Control
                 required
@@ -406,7 +412,7 @@ const MyAccommodation = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="price">
+            <Form.Group className="mb-3 mr-3" controlId="price">
               <Form.Label>Price *</Form.Label>
               <Form.Control
                 required

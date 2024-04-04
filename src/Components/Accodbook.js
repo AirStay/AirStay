@@ -65,7 +65,7 @@ const Accodbook = () => {
           <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
         </label>
         <br />
-        <button className='btn-primary'><Link to="/payment">Book</Link></button>
+        <button className='btn-primary'><Link to="/payment" style={{color:'inherit',textDecoration:'none'}}>Book</Link></button>
       </form>
     </div>
     </div>

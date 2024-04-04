@@ -56,7 +56,7 @@ const Payment = () => {
                     </div>
                     <input type='hidden' name='issuer' value={issuer} />
                     <div className='form-actions'>
-                        <button className='btn btn-success' style={{ justifyContent: 'center', margin: 'auto', display: 'flex' }}><Link to="/paymentsuccess">Pay</Link></button>
+                        <button className='btn btn-success' style={{ justifyContent: 'center', margin: 'auto', display: 'flex' }}><Link to="/paymentsuccess"style={{color:'inherit',textDecoration:'none'}}>Pay</Link></button>
                     </div>
                 </form>
             </div>

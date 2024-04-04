@@ -23,8 +23,8 @@ const Navbar = () => {
 }
 
   return (
-    <div>
-      <nav className="navbar bg-body-tertiary">
+    <div style={{marginBottom:'7rem'}}>
+      <nav className="navbar bg-body-tertiary fixed-top">
         <div className="container d-flex justify-content-between align-items-center">
           <Link className="navbar-brand" to="/">
             <img src="/assets/airstay.gif" alt="Bootstrap" width="60" />
