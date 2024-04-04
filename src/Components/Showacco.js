@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
+
 function AccommodationCard({ accommodation }) {
+
+  let navigate = useNavigate();
+
+  const handleDetailsClick = () => {
+    navigate(`/accomod/${accommodation._id}`);
+  };
+
   return (
     <Card>
       <Card.Header>{accommodation.propertyName}</Card.Header>
@@ -13,33 +22,9 @@ function AccommodationCard({ accommodation }) {
           {console.log(accommodation.image)}
         </div>
         <Card.Text>
-          <strong>Address:</strong> {accommodation.address}, {accommodation.city}, {accommodation.state}, {accommodation.pincode}
-        </Card.Text>
-        <Card.Text>
-          <strong>Description:</strong> {accommodation.description}
-        </Card.Text>
-        <Card.Text>
-          <strong>Property Type:</strong> {accommodation.propertyType}
-        </Card.Text>
-        <Card.Text>
-          <strong>Room Type:</strong> {accommodation.roomType}
-        </Card.Text>
-        <Card.Text>
-          <strong>Amenities:</strong> {Object.keys(accommodation.amenities).join(', ')}
-        </Card.Text>
-        <Card.Text>
-          <strong>More Info:</strong> {accommodation.moreInfo}
-        </Card.Text>
-        <Card.Text>
-          <strong>Check-In Time:</strong> {accommodation.checkInTime}, <strong>Check-Out Time:</strong> {accommodation.checkOutTime}
-        </Card.Text>
-        <Card.Text>
-          <strong>Maximum Guests:</strong> {accommodation.maxGuests}
-        </Card.Text>
-        <Card.Text>
           <strong>Price:</strong> Rs. {accommodation.price}
         </Card.Text>
-        <Button variant="primary">Book Now</Button>
+        <Button variant="primary" onClick={handleDetailsClick}>More Details</Button>
       </Card.Body>
     </Card>
   );

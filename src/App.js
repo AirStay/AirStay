@@ -14,6 +14,7 @@ import Showacco from './Components/Showacco';
 import Accodbook from './Components/Accodbook';
 import Paymentsuccess from './Components/Paymentsuccess';
 import Mybooking from './Components/Mybooking';
+import AccommodationDetails from './Components/Showaccodetails';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/payment" element={<Payment />} />
             <Route path="/paymentsuccess" element={<Paymentsuccess />} />
             <Route path="/mybooking" element={<Mybooking />} />
+            <Route path="/accomod/:id" element={<AccommodationDetails/>} />
           </Routes>
         </div>
         <Filter />
