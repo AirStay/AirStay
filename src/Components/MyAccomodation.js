@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Form, Button, Container } from "react-bootstrap";
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import {
   FaBed,
@@ -372,6 +372,8 @@ const MyAccommodation = () => {
               as="textarea"
               rows={3}
               placeholder="Describe your place"
+              name="moreInfo"
+              value={formData.moreInfo}
               onChange={handleInputChange}
             />
           </Form.Group>

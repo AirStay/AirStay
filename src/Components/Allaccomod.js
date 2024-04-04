@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Allaccomod = () => {
     const [accos, setAccos] = useState([]);
     const [loading, setLoading] = useState(true);
-    let navigate = useNavigate();
+
 
     
 
@@ -49,7 +49,7 @@ const Allaccomod = () => {
                             <div className="col" key={index}>
                                 {chunk.map((acco) => (
                                     <div className="card mb-3" key={acco._id}>
-                                        <img className="card-img-top" src="..." alt="Room Image" />
+                                        {/* <img className="card-img-top" src='require(../${accommodation.image})' alt="hotel" /> */}
                                         <div className="card-body">
                                             <h5 className="card-title">{acco.propertyName}</h5>
                                             <p className="card-text">
