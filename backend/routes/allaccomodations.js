@@ -15,4 +15,19 @@ router.get('/allaccomodations', async (req, res) => {
     }
   });
 
+  router.get('/:id', async (req, res) => {
+    try {
+      const accommodation = await Accommodation.findById(req.params.id);
+      if (!accommodation) {
+        return res.status(404).json({ error: 'Accommodation not found' });
+      }
+      res.json(accommodation);
+    } catch (error) {
+      console.error('Error fetching accommodation details:', error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
+
+
+
   module.exports = router;
