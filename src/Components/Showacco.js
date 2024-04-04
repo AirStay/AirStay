@@ -9,7 +9,7 @@ function AccommodationCard({ accommodation }) {
       <Card.Header>{accommodation.propertyName}</Card.Header>
       <Card.Body>
         <div>
-          {accommodation.image && <img src={accommodation.image} alt="Accommodation"  />}
+          {accommodation.image && <img src='require(../${accommodation.image})' alt="Accommodation"  />}
           {console.log(accommodation.image)}
         </div>
         <Card.Text>
