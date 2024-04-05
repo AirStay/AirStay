@@ -120,11 +120,16 @@ function Accodbook() {
     return <div>Loading...</div>;
   }
 
+  const replaceBackslashes = (path) => {
+    return path.replace(/\\/g, '/');
+  };
+
   return (
     <>
     <div>
       {accommodation && (
         <div>
+          {accommodation.image && <img src={require('../' + replaceBackslashes(accommodation.image))} alt="Accommodation" />}
           <p><strong>Name:</strong> {accommodation.propertyName}</p>
           <p><strong>Address:</strong> {accommodation.address}, {accommodation.city}, {accommodation.state}, {accommodation.pincode}</p>
           <p><strong>Description:</strong> {accommodation.description}</p>

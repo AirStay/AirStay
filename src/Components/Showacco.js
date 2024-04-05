@@ -22,8 +22,7 @@ function AccommodationCard({ accommodation }) {
       <Card.Header>{accommodation.propertyName}</Card.Header>
       <Card.Body>
         <div>
-          {accommodation.image && <img src='require(../${accommodation.image})' alt="Accommodation"  />}
-          {console.log(accommodation.image)}
+          {accommodation.image && <img src={require('../' + replaceBackslashes(accommodation.image))} alt="Accommodation" />}
         </div>
         <Card.Text>
           <strong>Price:</strong> Rs. {accommodation.price}
