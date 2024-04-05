@@ -10,7 +10,7 @@ function AccommodationDetails() {
   useEffect(() => {
     const fetchAccommodationDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/accomod/${id}`);
+        const response = await axios.get(`http://localhost:9050/api/accomod/${id}`);
         setAccommodation(response.data);
         setLoading(false);
       } catch (error) {

@@ -105,7 +105,7 @@ function Accodbook() {
   useEffect(() => {
     const fetchAccommodationDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/disaccomod/${id}`);
+        const response = await axios.get(`http://localhost:9050/api/disaccomod/${id}`);
         setAccommodation(response.data);
         setLoading(false);
       } catch (error) {
