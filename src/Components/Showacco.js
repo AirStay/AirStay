@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
+import './Showacco.css';
 
 function AccommodationCard({ accommodation }) {
-
   let navigate = useNavigate();
 
   const handleDetailsClick = () => {
@@ -14,19 +13,21 @@ function AccommodationCard({ accommodation }) {
   };
 
   return (
-    <Card>
-      <Card.Header>{accommodation.propertyName}</Card.Header>
-      <Card.Body>
-        <div>
-          {accommodation.image && <img src='require(../${accommodation.image})' alt="Accommodation"  />}
-          {console.log(accommodation.image)}
-        </div>
-        <Card.Text>
-          <strong>Price:</strong> Rs. {accommodation.price}
-        </Card.Text>
-        <Button variant="primary" onClick={handleDetailsClick}>More Details</Button>
-      </Card.Body>
-    </Card>
+    <div className="col-md-6 mb-3">
+      <Card>
+        <Card.Header>{accommodation.propertyName}</Card.Header>
+        <Card.Body>
+          <div>
+            {/* {accommodation.image && <img src={require(`../${accommodation.image}`)} alt="Accommodation" />}
+            {console.log(accommodation.image)} */}
+          </div>
+          <Card.Text>
+            <strong>Price:</strong> Rs. {accommodation.price}
+          </Card.Text>
+          <Button variant="primary" onClick={handleDetailsClick}>More Details</Button>
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
 
@@ -53,13 +54,11 @@ function UserAccommodations() {
   }, []);
 
   return (
-    <div>
-      <h1>Your Accommodations</h1>
+    <div className="row">
+      <h1 className="text-center my-3">Your Accommodations</h1>
       {accommodations.map(accommodation => (
         <AccommodationCard key={accommodation._id} accommodation={accommodation} />
-        
       ))}
-      
     </div>
   );
 }

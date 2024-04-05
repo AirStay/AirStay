@@ -13,6 +13,7 @@ import {
   FaSwimmingPool,
   FaUtensils,
   FaHandsWash,
+  FaFan,
 } from "react-icons/fa";
 
 const MyAccommodation = () => {
@@ -301,7 +302,7 @@ const MyAccommodation = () => {
                 onChange={handleCheckboxChange}
               />
               <label className="form-check-label" htmlFor="ac">
-                <FaWifi /> AC
+                <FaFan /> AC
               </label>
             </div>
             <div className="form-check mr-5">
