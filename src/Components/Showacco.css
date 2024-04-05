@@ -1,0 +1,26 @@
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+  
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .container {
+    padding: 20px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  

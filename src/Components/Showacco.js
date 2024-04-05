@@ -4,6 +4,7 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
+
 function AccommodationCard({ accommodation }) {
   let navigate = useNavigate();
 
@@ -21,8 +22,8 @@ function AccommodationCard({ accommodation }) {
       <Card.Header>{accommodation.propertyName}</Card.Header>
       <Card.Body>
         <div>
-        {accommodation.image && <img src={require('../' + replaceBackslashes(accommodation.image))} alt="Accommodation" />}
-    
+          {accommodation.image && <img src='require(../${accommodation.image})' alt="Accommodation"  />}
+          {console.log(accommodation.image)}
         </div>
         <Card.Text>
           <strong>Price:</strong> Rs. {accommodation.price}
@@ -60,7 +61,6 @@ function UserAccommodations() {
   return (
     <div>
       <h1>Your Accommodations</h1>
-      {error && <div>{error}</div>}
       {accommodations.map(accommodation => (
         <AccommodationCard key={accommodation._id} accommodation={accommodation} />
       ))}
