@@ -139,12 +139,7 @@ function Accodbook() {
       )}
     </div>
     <div className='container'>
-      
-      {/* <p>Accomodation Name</p>
-        
-    <p>Hotel address</p>
-    <p> images </p>
-    <p>Description</p> */}
+
     <div className='d-flex'>    
     <div className='border size-sm mx-auto p-3' style={{ maxWidth: '500px' }}>
       Price: per night for every hotel
@@ -179,6 +174,8 @@ function Accodbook() {
       </form>
     </div>
     </div>
+
+    <Link to="/" className='btn btn-primary'>Back</Link>
  
     <p>What this place offer!</p>
     

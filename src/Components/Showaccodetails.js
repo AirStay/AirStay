@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 function AccommodationDetails() {
@@ -42,6 +42,7 @@ function AccommodationDetails() {
           <p><strong>Price:</strong> Rs. {accommodation.price}</p>
         </div>
       )}
+      <Link to='/profile' className='btn btn-primary'>back</Link>
     </div>
   );
 }

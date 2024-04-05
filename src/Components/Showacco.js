@@ -4,13 +4,16 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-
 function AccommodationCard({ accommodation }) {
-
   let navigate = useNavigate();
 
   const handleDetailsClick = () => {
     navigate(`/accomod/${accommodation._id}`);
+  };
+
+  
+  const replaceBackslashes = (path) => {
+    return path.replace(/\\/g, '/');
   };
 
   return (
@@ -18,8 +21,8 @@ function AccommodationCard({ accommodation }) {
       <Card.Header>{accommodation.propertyName}</Card.Header>
       <Card.Body>
         <div>
-          {accommodation.image && <img src='require(../${accommodation.image})' alt="Accommodation"  />}
-          {console.log(accommodation.image)}
+        {accommodation.image && <img src={require('../' + replaceBackslashes(accommodation.image))} alt="Accommodation" />}
+    
         </div>
         <Card.Text>
           <strong>Price:</strong> Rs. {accommodation.price}
@@ -32,6 +35,7 @@ function AccommodationCard({ accommodation }) {
 
 function UserAccommodations() {
   const [accommodations, setAccommodations] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUserAccommodations = async () => {
@@ -46,6 +50,7 @@ function UserAccommodations() {
         setAccommodations(response.data);
       } catch (error) {
         console.error('Error fetching accommodations:', error);
+        setError('Error fetching accommodations. Please try again later.');
       }
     };
 
@@ -55,11 +60,10 @@ function UserAccommodations() {
   return (
     <div>
       <h1>Your Accommodations</h1>
+      {error && <div>{error}</div>}
       {accommodations.map(accommodation => (
         <AccommodationCard key={accommodation._id} accommodation={accommodation} />
-        
       ))}
-      
     </div>
   );
 }
