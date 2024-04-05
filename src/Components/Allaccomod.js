@@ -34,9 +34,7 @@ const Allaccomod = () => {
         return chunkedArr;
     };
 
-    const replaceBackslashes = (path) => {
-        return path.replace(/\\/g, '/');
-      };
+
 
     return (
         <div className="my-3">
@@ -49,7 +47,10 @@ const Allaccomod = () => {
                             <div className="col" key={index}>
                                 {chunk.map((acco) => (
                                     <div className="card mb-3" key={acco._id}>
-                                       {acco.image && <img src={require('../' + replaceBackslashes(acco.image))} alt="Accommodation" />}
+                                     {acco.image && <img src={require('../../uploads/' +(acco.image))} alt="Accommodation" />}
+                                      
+                                     
+                                      
                                         <div className="card-body">
                                             <h5 className="card-title">{acco.propertyName}</h5>
                                             <p className="card-text">

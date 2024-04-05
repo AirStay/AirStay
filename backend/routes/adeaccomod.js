@@ -5,14 +5,14 @@ const Accommodation = require('../models/accomodation');
 const fetchuser = require("../middleware/fetchuser");
 const { body, validationResult } = require('express-validator');
 
-// Multer storage configuration
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    // cb(null, './src/Components/uploads'); // Set the destination folder for uploaded images
-    cb(null, 'uploads');
+
+    cb(null, 'uploads')
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname); // Set unique filenames for uploaded images
+    cb(null, Date.now() + '-' + file.originalname);
   }
 });
 
@@ -35,7 +35,7 @@ router.post('/addaccomodation', fetchuser, upload.single('image'), [
     const { propertyName, address, city, state, pincode, description, propertyType, roomType, amenities, moreInfo, checkInTime, checkOutTime, maxGuests, price } = req.body;
 
     // Get the path of the uploaded image
-    const image = req.file.path;
+    const image = req.file.filename;
 
     const accommodation = new Accommodation({
       propertyName,

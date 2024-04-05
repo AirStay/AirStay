@@ -35,7 +35,7 @@ function AccommodationDetails() {
       <h2>Accommodation Details</h2>
       {accommodation && (
         <div>
-          {accommodation.image && <img src={require('../' + replaceBackslashes(accommodation.image))} alt="Accommodation" />}
+           {accommodation.image && <img src={require('../../uploads/' +(accommodation.image))} alt="Accommodation" />}
           <p><strong>Name:</strong> {accommodation.propertyName}</p>
           <p><strong>Address:</strong> {accommodation.address}, {accommodation.city}, {accommodation.state}, {accommodation.pincode}</p>
           <p><strong>Description:</strong> {accommodation.description}</p>

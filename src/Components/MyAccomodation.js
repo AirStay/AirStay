@@ -107,7 +107,7 @@ const MyAccommodation = () => {
       });
 
       console.log(response.data);
-      navigate("/");
+      navigate("/profile");
     } catch (error) {
       console.error("Error adding accommodation:", error);
     }
