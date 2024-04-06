@@ -99,7 +99,7 @@ const MyAccommodation = () => {
     formDataToSend.append('image', image); // Append the image file
 
     try {
-      const response = await axios.post("http://localhost:5000/api/accomod/addaccomodation", formDataToSend, {
+      const response = await axios.post("http://localhost:7420/api/accomod/addaccomodation", formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'auth-token': token,

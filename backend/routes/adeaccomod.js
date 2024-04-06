@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Add accommodation
-router.post('/addaccomodation', fetchuser, upload.single('image'), [
+router.post('/addaccomodation', upload.single('image'), fetchuser, [
   body('propertyName', 'Enter a valid property name').isLength({ min: 3 }),
   body('address', 'Enter a valid address').isLength({ min: 3 }),
   body('description', 'Enter a valid description').isLength({ min: 3 }),
