@@ -88,6 +88,7 @@ function AccommodationCard({ accommodation }) {
  
 
   return (
+    <div>
     <Card >
       <Card.Header>{accommodation.propertyName}</Card.Header>
       <Card.Body>
@@ -101,6 +102,7 @@ function AccommodationCard({ accommodation }) {
         <Button variant="primary" onClick={handleDetailsClick}>More Details</Button>
       </Card.Body>
     </Card>
+    </div>
   );
 }
 
@@ -130,10 +132,11 @@ function UserAccommodations() {
 
   return (
     <div>
-      <h1>Your Accommodations</h1>
+      <h1 className='mb-5'>Your Accommodations</h1>
+      <div>
       {accommodations.map(accommodation => (
         <AccommodationCard key={accommodation._id} accommodation={accommodation} />
-      ))}
+      ))}</div>
     </div>
   );
 }

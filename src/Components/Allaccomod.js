@@ -38,35 +38,32 @@ const Allaccomod = () => {
 
     return (
         <div className="my-3">
-            <div className="position-relative p-4">
-                {loading ? (
-                    <p>Loading...</p>
-                ) : (
-                    <div className="row row-cols-1 row-cols-md-2 g-3">
-                        {chunkArray(accos, 3).map((chunk, index) => (
-                            <div className="col" key={index}>
-                                {chunk.map((acco) => (
-                                    <div className="card mb-3" key={acco._id}>
-                                     {acco.image && <img src={require('../../uploads/' +(acco.image))} alt="Accommodation" />}
-                                      
-                                     
-                                      
-                                        <div className="card-body">
-                                            <h5 className="card-title">{acco.propertyName}</h5>
-                                            <p className="card-text">
-                                                Price: {acco.price}<br />
-                                            </p>
-                                            <Link className="btn btn-primary" to={`/accodbook/${acco._id}`} style={{ backgroundColor: '#007bff', borderColor: '#007bff', transition: 'background-color 0.3s ease, border-color 0.3s ease' }}>Book Now</Link>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
+        <div className="p-4">
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <div className="row row-cols-md-3">
+              {chunkArray(accos, 1).map((chunk, index) => (
+                <div className="col" key={index}>
+                  {chunk.map((acco) => (
+                    <div className="card mb-3" key={acco._id} style={{ border: '2px solid black' }}>
+                      {acco.image && <img src={require(`../../uploads/${acco.image}`)} alt="Accommodation" />}
+                      <div className="card-body">
+                        <h5 className="card-title">{acco.propertyName}</h5>
+                        <p className="card-text">
+                          Price: {acco.price}<br />
+                        </p>
+                        <Link className="btn btn-primary" to={`/accodbook/${acco._id}`} style={{ backgroundColor: '#007bff', borderColor: '#007bff', transition: 'background-color 0.3s ease, border-color 0.3s ease' }}>Book Now</Link>
+                      </div>
                     </div>
-                )}
+                  ))}
+                </div>
+              ))}
             </div>
+          )}
         </div>
+      </div>
     );
-};
+  };
 
 export default Allaccomod;
