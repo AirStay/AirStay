@@ -49,7 +49,10 @@ function Accodbook() {
       {accommodation && (
         
         <div>
-          <div className="card border"style={{borderRadius: '5px',width:'30rem',display:'flex',justifyContent:'center',margin:'auto',boxShadow: '0 0 40rem rgba(0.4, 0.6, 0.7, 0.5)'}}> {accommodation.image && <img src={require('../../uploads/' +(accommodation.image))}alt="Accommodation" />}</div>
+          <div className="card "style={{borderRadius: '5px',width:'35rem',display:'flex',justifyContent:'center',margin:'auto',boxShadow: '0 0 40rem rgba(0.4, 0.6, 0.7, 0.5)'}}> {accommodation.image && <img src={require('../../uploads/' +(accommodation.image))}style={{border:'25px solid #021a40'}} alt="Accommodation" />}</div>
+         
+         <div className='d-flex'style={{justifyContent:'space-between',marginTop:'10vh'}} >
+          <div className='p-5'style={{maxWidth:'50%', borderRadius: '15px', boxShadow: '0 0 40px rgba(0.2, 0.3, 0.4, 1)'}}>
           <p> <strong><div className='text'style={{fontFamily:'sans-serif',fontSize:'2rem'}}>{accommodation.propertyName}</div></strong></p>
           <p><strong>Address:</strong> {accommodation.address}, {accommodation.city}, {accommodation.state}, {accommodation.pincode}</p>
           <p><strong>Description:</strong> {accommodation.description}</p>
@@ -61,10 +64,8 @@ function Accodbook() {
           <p><strong>Maximum Guests:</strong> {accommodation.maxGuests}</p>
           <p><strong>Price:</strong> Rs. {accommodation.price}</p>
         </div>
-      )}
-      <div className='container'>
-
-      <div className='form'>    
+        
+        <div className='form'style={{justifyContent:'center',display:'flex',flexDirection:'column'}}>    
   <div className='border' style={{ maxWidth: '500px', padding: '20px', borderRadius: '15px', boxShadow: '0 0 40px rgba(0.2, 0.3, 0.4, 1)' }}>
     <p style={{ marginBottom: '20px' }}>Price: per night for every hotel</p>
     <form onSubmit={handleSubmit} className='m-3'>
@@ -95,9 +96,15 @@ function Accodbook() {
       </label>
       <br />
       <button className='btn-primary' style={{ padding: '10px 20px', border: 'none', borderRadius: '4px', backgroundColor: '#007bff', color: '#fff', cursor: 'pointer' }}><Link to="/payment" style={{color:'inherit',textDecoration:'none'}}>Book</Link></button>
-    </form>
+    </form></div>
   </div>
 </div>
+        
+        </div>
+      )}
+      <div className='container'>
+
+     
 
 
 {/* <Link to="/" className='btn btn-primary'>Back</Link> */}
