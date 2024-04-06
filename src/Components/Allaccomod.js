@@ -10,7 +10,7 @@ const Allaccomod = () => {
     useEffect(() => {
         const fetchAccos = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/disaccomod/allaccomodations', {
+                const response = await axios.get('http://localhost:7420/api/disaccomod/allaccomodations', {
                     headers: {
                         'Content-Type': 'application/json'
                     },

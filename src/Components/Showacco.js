@@ -41,7 +41,7 @@
 //     const fetchUserAccommodations = async () => {
 //       try {
 //         const token = localStorage.getItem('token');
-//         const response = await axios.get('http://localhost:5000/api/accomod/useraccommodations', {
+//         const response = await axios.get('http://localhost:7420/api/accomod/useraccommodations', {
 //           headers: {
 //             'Content-Type': 'multipart/form-data',
 //             'auth-token': token,
@@ -112,7 +112,7 @@ function UserAccommodations() {
     const fetchUserAccommodations = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/accomod/useraccommodations', {
+        const response = await axios.get('http://localhost:7420/api/accomod/useraccommodations', {
           headers: {
             'Content-Type': 'multipart/form-data',
             'auth-token': token,
