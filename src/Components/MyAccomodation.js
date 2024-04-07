@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
+import Alert from "./Alert";
 import {
   FaBed,
   FaHome,
@@ -18,6 +19,7 @@ import {
 
 const MyAccommodation = () => {
   let navigate = useNavigate();
+  const [showAlert, setShowAlert] = useState(false);
   const [formData, setFormData] = useState({
     propertyName: "",
     address: "",
@@ -103,10 +105,11 @@ const MyAccommodation = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
           'auth-token': token,
-        }
+        } 
       });
 
       console.log(response.data);
+      setShowAlert(true);
       navigate("/");
     } catch (error) {
       console.error("Error adding accommodation:", error);
@@ -115,6 +118,9 @@ const MyAccommodation = () => {
 
   return (
     <Container>
+       {showAlert && (
+        <Alert alert={{ type: "success", msg: "Accommodation added successfully" }} />
+      )}
       <h1>Add Accommodation</h1>
       <Form onSubmit={handleSubmit} style={{ border: '1px solid black', padding: '20px', borderRadius: '15px' ,marginBottom:'2rem',marginTop:'2rem'}}>
         <Form.Group className="mb-3" controlId="propertyName">

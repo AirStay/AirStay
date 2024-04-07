@@ -78,6 +78,7 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
+
 function AccommodationCard({ accommodation }) {
   let navigate = useNavigate();
 
