@@ -14,6 +14,7 @@ import Accodbook from './Components/Accodbook';
 import Paymentsuccess from './Components/Paymentsuccess';
 import Mybooking from './Components/Mybooking';
 import AccommodationDetails from './Components/Showaccodetails';
+import Booking from './Components/Booking';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/paymentsuccess" element={<Paymentsuccess />} />
             <Route path="/mybooking" element={<Mybooking />} />
             <Route path="/accomod/:id" element={<AccommodationDetails/>} />
+            <Route path="/booking/:id" element={<Booking/>} />
           </Routes>
         </div>
         <Filter />

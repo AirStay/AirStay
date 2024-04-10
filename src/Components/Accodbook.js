@@ -1,29 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 // import './Accodbook.css'
 
-function Accodbook() {
-  const { id } = useParams();
+function Accodbook({id, onSubmit}) {
   const [accommodation, setAccommodation] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [fromDate, setFromDate] = useState('');
-  const [toDate, setToDate] = useState('');
-  const [numGuests, setNumGuests] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [formData, setFormData] = useState({
+    fdate: '',
+    tdate: '',
+    guestnumber: '',
+    name: '',
+    phno: ''
+});
 
-  const handleSubmit = (e) => {
+const handleInputChange = (e) => {
+  setFormData({ ...formData, [e.target.name]: e.target.value });
+};
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you can perform any booking-related actions, such as sending data to a server or displaying a confirmation message
-    console.log('Booking submitted:', { fromDate, toDate, numGuests, fullName, phoneNumber });
-    // Clear form fields after submission
-    setFromDate('');
-    setToDate('');
-    setNumGuests('');
-    setFullName('');
-    setPhoneNumber('');
+
+    const token = localStorage.getItem('token');
+    const { fdate, tdate, guestnumber, name, phno} = formData;
+
+    const formDataToSend = new FormData();
+    formDataToSend.append('fdate',fdate);
+    formDataToSend.append('tdate', tdate);
+    formDataToSend.append('guestnumber', guestnumber);
+    formDataToSend.append('name', name);
+    formDataToSend.append('phno', phno);
+
+    // try {
+    //   console.log('Request Body:', formData);
+    //   const response = await axios.post("http://localhost:7420/api/bookaccomodation/bookaccomod", formDataToSend, {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'auth-token': token,
+    //     }
+    //   });
+
+    //   console.log(response.data);
+    //   navigate("/");
+    // } catch (error) {
+    //   console.error("Error adding accommodation:", error);
+      
+    // }
+    onSubmit(formData);
   };
+
 
   useEffect(() => {
     const fetchAccommodationDetails = async () => {
@@ -72,30 +96,30 @@ function Accodbook() {
       <div className='d-flex'>
         <label>
           From Date:
-          <input className='mr-2' type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }} />
+          <input className='mr-2' type="date" onChange={handleInputChange} style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }} name="fdate" value={formData.fdate} required />
         </label>
         <label>
           To Date:
-          <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }} />
+          <input type="date"  onChange={handleInputChange} style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }} name="tdate" value={formData.tdate} required/>
         </label>
       </div>
 
       <label>
         Number of Guests:<br />
-        <input className='mr-2 w-100' type="number" value={numGuests} onChange={(e) => setNumGuests(e.target.value)} style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }} />
+        <input className='mr-2 w-100' type="number"  onChange={handleInputChange} style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }} name="guestnumber" value={formData.guestnumber} required/>
       </label>
       <br />
       <label>
         Full Name:<br />
-        <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }} />
+        <input type="text"  onChange={handleInputChange} style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }} name="name" value={formData.name} required/>
       </label>
       <br />
       <label>
         Phone Number:<br />
-        <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }} />
+        <input type="phno"  onChange={handleInputChange} style={{ width: '100%', padding: '8px', marginTop: '5px', border: '1px solid #ccc', borderRadius: '4px' }} name="phno" value={formData.phno} required/>
       </label>
       <br />
-      <button className='btn-primary' style={{ padding: '10px 20px', border: 'none', borderRadius: '4px', backgroundColor: '#007bff', color: '#fff', cursor: 'pointer' }}><Link to="/payment" style={{color:'inherit',textDecoration:'none'}}>Book</Link></button>
+      <button className='btn-primary' style={{ padding: '10px 20px', border: 'none', borderRadius: '4px', backgroundColor: '#007bff', color: '#fff', cursor: 'pointer' }}>Proceed to pay</button>
     </form></div>
   </div>
 </div>
@@ -103,11 +127,6 @@ function Accodbook() {
         </div>
       )}
       <div className='container'>
-
-     
-
-
-{/* <Link to="/" className='btn btn-primary'>Back</Link> */}
 
 <p className='mt-4'>What this place offer!</p>
 <div className='mb-4'><strong>{Object.keys(accommodation.amenities).join(', ')}</strong></div> 

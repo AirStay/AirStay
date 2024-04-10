@@ -56,7 +56,7 @@ const MyAccommodation = () => {
     }));
   };
 
-  
+
 
   const handlePropertyTypeChange = (type) => {
     setFormData({ ...formData, propertyType: type });
@@ -70,7 +70,7 @@ const MyAccommodation = () => {
     const selectedFile = e.target.files[0];
     setFormData({ ...formData, image: selectedFile });
 
-    
+
   };
 
   const handleSubmit = async (e) => {
@@ -116,7 +116,7 @@ const MyAccommodation = () => {
   return (
     <Container>
       <h1>Add Accommodation</h1>
-      <Form onSubmit={handleSubmit} style={{ border: '1px solid black', padding: '20px', borderRadius: '15px' ,marginBottom:'2rem',marginTop:'2rem'}}>
+      <Form onSubmit={handleSubmit} style={{ border: '1px solid black', padding: '20px', borderRadius: '15px', marginBottom: '2rem', marginTop: '2rem' }}>
         <Form.Group className="mb-3" controlId="propertyName">
           <Form.Label>Property Name *</Form.Label>
           <Form.Control required
@@ -128,54 +128,54 @@ const MyAccommodation = () => {
         </Form.Group>
 
         <Form.Group className="d-flex">
-        <Form.Group className="mb-3 mr-3" controlId="address" name="address">
-          <Form.Label>Address *</Form.Label>
-          <Form.Control
-          // style={{width:'25%'}}
-            required
-            type="text"
-            rows={3}
-            placeholder="Address"
-            name="address"
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3 mr-3" controlId="city" name="city">
-          <Form.Label>City *</Form.Label>
-          <Form.Control
-          // style={{width:'25%'}}
-            required
-            type="text"
-            rows={3}
-            placeholder="City"
-            name="city"
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3 mr-3" controlId="state" name="state">
-          <Form.Label>State *</Form.Label>
-          <Form.Control
-          // style={{width:'25%'}}
-            required
-            type="text"
-            rows={3}
-            placeholder="State"
-            name="state"
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3 mr-3" controlId="pincode" name="pincode">
-          <Form.Label>Pincode *</Form.Label>
-          <Form.Control
-          // style={{width:'25%'}}
-            required
-            type="text"
-            rows={3}
-            placeholder="Pincode"
-            name="pincode"
-            onChange={handleInputChange}
-          />
-        </Form.Group>
+          <Form.Group className="mb-3 mr-3" controlId="address" name="address">
+            <Form.Label>Address *</Form.Label>
+            <Form.Control
+              // style={{width:'25%'}}
+              required
+              type="text"
+              rows={3}
+              placeholder="Address"
+              name="address"
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 mr-3" controlId="city" name="city">
+            <Form.Label>City *</Form.Label>
+            <Form.Control
+              // style={{width:'25%'}}
+              required
+              type="text"
+              rows={3}
+              placeholder="City"
+              name="city"
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 mr-3" controlId="state" name="state">
+            <Form.Label>State *</Form.Label>
+            <Form.Control
+              // style={{width:'25%'}}
+              required
+              type="text"
+              rows={3}
+              placeholder="State"
+              name="state"
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3 mr-3" controlId="pincode" name="pincode">
+            <Form.Label>Pincode *</Form.Label>
+            <Form.Control
+              // style={{width:'25%'}}
+              required
+              type="text"
+              rows={3}
+              placeholder="Pincode"
+              name="pincode"
+              onChange={handleInputChange}
+            />
+          </Form.Group>
         </Form.Group>
         <Form.Group controlId="image">
           <Form.Label>Image *</Form.Label>

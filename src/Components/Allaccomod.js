@@ -53,7 +53,7 @@ const Allaccomod = () => {
                         <p className="card-text">
                           Price: {acco.price}<br />
                         </p>
-                        <Link className="btn btn-primary" to={`/accodbook/${acco._id}`} style={{ backgroundColor: '#007bff', borderColor: '#007bff', transition: 'background-color 0.3s ease, border-color 0.3s ease' }}>Book Now</Link>
+                        <Link className="btn btn-primary" to={`/booking/${acco._id}`} style={{ backgroundColor: '#007bff', borderColor: '#007bff', transition: 'background-color 0.3s ease, border-color 0.3s ease' }}>Book Now</Link>
                       </div>
                     </div>
                   ))}

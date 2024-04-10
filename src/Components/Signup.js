@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 const Signup = (props) => {
   const [credentials, setCredentials] = useState({name: "", email: "", password: "",cpassword: "",phno: ""}) 
     let navigate = useNavigate();
@@ -133,7 +133,7 @@ const Signup = (props) => {
           </button>
 
           <div className="mt-2 text-center">
-            Already a User? <a href="/login">Login</a>
+            Already a User? <Link to="/login">Login</Link>
           </div>
         </form>
       </div>
