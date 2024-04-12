@@ -20,6 +20,16 @@ import {
 const MyAccommodation = () => {
   let navigate = useNavigate();
   const [showAlert, setShowAlert] = useState(false);
+  
+  const setAlert  = (message, type)=>{
+    setShowAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+      setShowAlert(null);
+    }, 1500);
+}
   const [formData, setFormData] = useState({
     propertyName: "",
     address: "",
@@ -109,8 +119,8 @@ const MyAccommodation = () => {
       });
 
       console.log(response.data);
-      setShowAlert(true);
-      navigate("/");
+      setAlert(true);
+      navigate("/profile");
     } catch (error) {
       console.error("Error adding accommodation:", error);
     }

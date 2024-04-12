@@ -46,7 +46,7 @@ const Allaccomod = () => {
               {chunkArray(accos, 1).map((chunk, index) => (
                 <div className="col" key={index}>
                   {chunk.map((acco) => (
-                    <div className="card mb-3" key={acco._id} style={{ border: '2px solid black',height:'23rem' }}>
+                    <div className="card mb-3" key={acco._id} style={{ border: '2px solid black' }}>
                       {acco.image && <img src={require(`../../uploads/${acco.image}`)} alt="Accommodation" />}
                       <div className="card-body">
                         <h5 className="card-title">{acco.propertyName}</h5>
