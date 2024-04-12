@@ -13,6 +13,7 @@ app.use(cors());
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/accomod', require('./routes/adeaccomod'))
 app.use('/api/disaccomod', require('./routes/allaccomodations'))
+app.use('/api/bookaccomodation', require('./routes/bookaccomod'))
 
 app.get('/', (req, res) => {
   res.send('airstay')

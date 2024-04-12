@@ -2,27 +2,27 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const accommodationSchema = new Schema({
-  user:{
+  user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-},
+  },
   propertyName: {
     type: String,
     required: true
   },
-  address:{
+  address: {
     type: String,
     required: true
   },
-  city:{
+  city: {
     type: String,
     required: true
   },
-  state:{
+  state: {
     type: String,
     required: true
   },
-  pincode:{
+  pincode: {
     type: String,
     required: true
   },

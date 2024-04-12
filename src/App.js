@@ -14,8 +14,6 @@ import Accodbook from './Components/Accodbook';
 import Paymentsuccess from './Components/Paymentsuccess';
 import Mybooking from './Components/Mybooking';
 import AccommodationDetails from './Components/Showaccodetails';
-import  Alert  from './Components/Alert';
-import { useState } from "react";
 
 function App() {
   const [alert, setAlert] = useState();
@@ -46,6 +44,7 @@ function App() {
             <Route path="/paymentsuccess" element={<Paymentsuccess />} />
             <Route path="/mybooking" element={<Mybooking />} />
             <Route path="/accomod/:id" element={<AccommodationDetails/>} />
+            <Route path="/booking/:id" element={<Booking/>} />
           </Routes>
         </div>
         <Filter />
