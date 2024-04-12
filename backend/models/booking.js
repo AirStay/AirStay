@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const BookingSchema = new Schema({
+    userEmail:{
+        type: String,
+        required: true,
+    },
     fdate: {
         type: Date,
         required: true,
