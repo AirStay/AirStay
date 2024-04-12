@@ -66,6 +66,7 @@ const Booking = () => {
     const [bookingData, setBookingData] = useState(null);
     const [paymentData, setPaymentData] = useState(null);
     const [userEmail, setUserEmail] = useState(null);
+    const [userId, setUserId] = useState(null);
 
     useEffect(() => {
         const fetchUserEmail = async () => {
@@ -82,6 +83,9 @@ const Booking = () => {
                 const userData = await response.json();
                 const email = userData.email; // Assuming email is a direct property of the response data
                 setUserEmail(email);
+                const id= userData._id;
+                setUserId(id);
+
             } catch (error) {
                 console.error("Error fetching user email:", error);
             }
@@ -103,7 +107,7 @@ const Booking = () => {
         console.log(paymentFormData)
         
         // Combine bookingData, paymentData, and userEmail
-        const combinedData = { ...bookingData, ...paymentFormData, userEmail };
+        const combinedData = { ...bookingData, ...paymentFormData, userEmail, userId };
         console.log('Combined Data:', combinedData);
 
         // Submit combinedData to backend

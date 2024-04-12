@@ -14,7 +14,8 @@ router.post('/bookaccomod', fetchuser, [
     body('cnumber', 'Enter a valid card nnumber'),
     body('expiry', 'Enter a valid date'),
     body('cvc', 'Enter a cvc'),
-    body('userEmail')
+    body('userEmail'),
+    body('userId')
 ], async (req, res) => {
     try {
         const errors = validationResult(req);
@@ -22,7 +23,7 @@ router.post('/bookaccomod', fetchuser, [
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { userEmail, fdate, tdate, guestnumber, name, phno, chname, cnumber, expiry, cvc } = req.body;
+        const { userId, userEmail, fdate, tdate, guestnumber, name, phno, chname, cnumber, expiry, cvc } = req.body;
 
         const booking = new Booking({
             fdate,
@@ -34,7 +35,8 @@ router.post('/bookaccomod', fetchuser, [
             cnumber,
             expiry,
             cvc,
-            userEmail
+            userEmail,
+            userId
         });
 
         const savedBooking = await booking.save();
@@ -46,15 +48,27 @@ router.post('/bookaccomod', fetchuser, [
 });
 
 
-router.get('/userbookings',fetchuser, async (req, res) => {
-    try {
+// router.get('/userbookings',fetchuser, async (req, res) => {
+//     try {
         
-        const bookings = await Booking.find().populate('userEmail', 'email');
+//         const bookings = await Booking.find().populate('userEmail', 'email');
+//         res.json(bookings);
+//     } catch (error) {
+//         console.error(error.message);
+//         res.status(500).send('Internal Server Error');
+//     }
+// });
+
+router.get('/userbookings', fetchuser, async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const bookings = await Booking.find({ userId });
         res.json(bookings);
     } catch (error) {
         console.error(error.message);
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 module.exports = router;
