@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { FaBed, FaHome, FaBuilding, FaHotel, FaWifi, FaTv, FaParking, FaSwimmingPool, FaUtensils, FaWrench, FaMailchimp, FaHandsWash, FaWater } from 'react-icons/fa';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
+import RangeSlider from 'react-range-slider-input';
+import 'react-range-slider-input/dist/style.css';
 
 const Filter = ({ showModal, handleClose }) => {
   const [minPrice, setMinPrice] = useState(600);
@@ -60,12 +60,11 @@ const Filter = ({ showModal, handleClose }) => {
       <Modal.Body>
         <label htmlFor="priceRange" className="form-label">Price Range:</label>
         <div className="mb-3">
-          <Slider
+          <RangeSlider
             min={600}
             max={30000}
             value={sliderValue}
             onChange={handleSliderChange}
-            style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto' }}
           />
           <div className="d-flex justify-content-between" style={{ marginTop: '10px' }}>
             <span>600</span>
@@ -94,7 +93,6 @@ const Filter = ({ showModal, handleClose }) => {
             <FaHotel size={20} />
             <span style={{ marginLeft: '5px' }}>Hotel</span>
           </Button>
-          
         </div>
         <label htmlFor="roomType" className="form-label">Room Type :</label>
         <div className="d-flex justify-content-between">
@@ -112,44 +110,44 @@ const Filter = ({ showModal, handleClose }) => {
           </Button>
         </div>
         <label htmlFor="amenities" className="form-label mt-3">Amenities:</label>
-      <div className="row">
-        <div className="col">
-          <div className="mb-3">
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="wifi" />
-              <label className="form-check-label" htmlFor="wifi"><FaWifi /> Wi-Fi</label>
+        <div className="row">
+          <div className="col">
+            <div className="mb-3">
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="wifi" />
+                <label className="form-check-label" htmlFor="wifi"><FaWifi /> Wi-Fi</label>
+              </div>
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="ac" />
+                <label className="form-check-label" htmlFor="ac"><FaWifi /> AC</label>
+              </div>
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="tv" />
+                <label className="form-check-label" htmlFor="tv"><FaTv /> TV</label>
+              </div>
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="parking" />
+                <label className="form-check-label" htmlFor="parking"><FaParking /> Free Parking</label>
+              </div>
             </div>
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="ac" />
-              <label className="form-check-label" htmlFor="ac"><FaWifi /> AC</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="tv" />
-              <label className="form-check-label" htmlFor="tv"><FaTv /> TV</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="parking" />
-              <label className="form-check-label" htmlFor="parking"><FaParking /> Free Parking</label>
+          </div>
+          <div className="col">
+            <div className="mb-3">
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="kitchen" />
+                <label className="form-check-label" htmlFor="kitchen"><FaUtensils /> Kitchen</label>
+              </div>
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="washingMachine" />
+                <label className="form-check-label" htmlFor="washingMachine"><FaHandsWash /> Washing Machine</label>
+              </div>
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="pool" />
+                <label className="form-check-label" htmlFor="pool"><FaSwimmingPool /> Pool</label>
+              </div>
             </div>
           </div>
         </div>
-        <div className="col">
-          <div className="mb-3">
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="kitchen" />
-              <label className="form-check-label" htmlFor="kitchen"><FaUtensils /> Kitchen</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="washingMachine" />
-              <label className="form-check-label" htmlFor="washingMachine"><FaHandsWash /> Washing Machine</label>
-            </div>
-            <div className="form-check">
-              <input className="form-check-input" type="checkbox" value="" id="pool" />
-              <label className="form-check-label" htmlFor="pool"><FaSwimmingPool /> Pool</label>
-            </div>
-          </div>
-        </div>
-      </div>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClearFilters}>
