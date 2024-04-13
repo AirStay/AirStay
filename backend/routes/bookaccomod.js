@@ -48,18 +48,6 @@ router.post('/bookaccomod', fetchuser, [
     }
 });
 
-
-// router.get('/userbookings',fetchuser, async (req, res) => {
-//     try {
-        
-//         const bookings = await Booking.find().populate('userEmail', 'email');
-//         res.json(bookings);
-//     } catch (error) {
-//         console.error(error.message);
-//         res.status(500).send('Internal Server Error');
-//     }
-// });
-
 router.get('/userbookings', fetchuser, async (req, res) => {
     try {
         const userId = req.user.id;
