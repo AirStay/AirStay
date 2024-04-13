@@ -17,6 +17,7 @@ import AccommodationDetails from './Components/Showaccodetails';
 import Alert from './Components/Alert';
 import { useState } from 'react';
 import Booking from './Components/Booking';
+import Accodsuccess from './Components/AccomodationSuccess';
 
 function App() {
   const [alert, setAlert] = useState();
@@ -48,6 +49,7 @@ function App() {
             <Route path="/mybooking" element={<Mybooking />} />
             <Route path="/accomod/:id" element={<AccommodationDetails/>} />
             <Route path="/booking/:id" element={<Booking/>} />
+            <Route path="/accodsuccess" element={<Accodsuccess />} />
            
           </Routes>
         </div>

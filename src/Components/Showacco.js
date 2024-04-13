@@ -78,7 +78,6 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-
 function AccommodationCard({ accommodation }) {
   let navigate = useNavigate();
 
@@ -107,6 +106,7 @@ function AccommodationCard({ accommodation }) {
 function UserAccommodations() {
   const [accommodations, setAccommodations] = useState([]);
   const [error, setError] = useState(null);
+  const [hasContent, setHasContent] = useState(false);
 
   useEffect(() => {
     const fetchUserAccommodations = async () => {
@@ -119,6 +119,7 @@ function UserAccommodations() {
           },
         });
         setAccommodations(response.data);
+        setHasContent(response.data.length > 0); // Set hasContent based on whether accommodations are fetched
       } catch (error) {
         console.error('Error fetching accommodations:', error);
         setError('Error fetching accommodations. Please try again later.');
@@ -130,7 +131,11 @@ function UserAccommodations() {
 
   return (
     <div>
-      <h1 className='mb-5'>Your Accommodations</h1>
+      {hasContent && (
+        <div className='mb-5' style={{ fontFamily: 'Times New Roman', fontSize: '32px', fontWeight: 'bold', display: 'flex', justifyContent: 'center', margin: 'auto' }}>
+          Your Accommodations
+        </div>
+      )}
       <div className="row">
         {accommodations.map(accommodation => (
           <AccommodationCard key={accommodation._id} accommodation={accommodation} />

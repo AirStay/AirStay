@@ -32,7 +32,7 @@ function AccommodationDetails() {
 
   return (
     <div>
-      <div style={{fontFamily:'serif'}}> Accommodation Details</div>
+      <div style={{fontFamily: 'Georgia', fontSize: '32px'}}> Accommodation Details</div>
       {accommodation && (
          <div className='d-flex'>
           

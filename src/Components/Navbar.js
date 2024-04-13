@@ -23,7 +23,7 @@ const Navbar = () => {
 }
 
   return (
-    <div style={{marginBottom:'7rem'}}>
+    <div style={{marginBottom:'5rem'}}>
       <nav className="navbar bg-body-tertiary fixed-top">
         <div className="container d-flex justify-content-between align-items-center">
           <Link className="navbar-brand" to="/">

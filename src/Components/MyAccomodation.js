@@ -120,7 +120,7 @@ const MyAccommodation = () => {
 
       console.log(response.data);
       setAlert(true);
-      navigate("/profile");
+      navigate("/accodsuccess");
     } catch (error) {
       console.error("Error adding accommodation:", error);
     }
@@ -131,7 +131,7 @@ const MyAccommodation = () => {
        {showAlert && (
         <Alert alert={{ type: "success", msg: "Accommodation added successfully" }} />
       )}
-      <h1>Add Accommodation</h1>
+      <h1 style={{fontFamily:'Georgia'}}>Add Accommodation</h1>
       <Form onSubmit={handleSubmit} style={{ border: '1px solid black', padding: '20px', borderRadius: '15px', marginBottom: '2rem', marginTop: '2rem' }}>
         <Form.Group className="mb-3" controlId="propertyName">
           <Form.Label>Property Name *</Form.Label>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MyAccommodation from './MyAccomodation';
 import { Link } from 'react-router-dom';
 
-const Paymentsuccess = () => {
+const Accodsuccess = () => {
     useEffect(() => {
         const canvas = document.getElementById("canvas");
         const ctx = canvas.getContext("2d");
@@ -98,8 +98,8 @@ const Paymentsuccess = () => {
     return (
         <div className="container d-flex justify-content-center align-items-center"style={{ minHeight: '80vh' }}>
             <div className="bg-white border border-dark rounded-lg p-4 text-center">
-                <h1 className="text-2xl font-bold mb-4">Payment Successfully Completed!</h1>
-                <p className="text-lg mb-4">Thank you for your payment.</p>
+                <h1 className="text-2xl font-bold mb-4">Accomodation Added Successfully!</h1>
+                <p className="text-lg mb-4">Thank you.</p>
                 <button className="btn btn-success m-2" onClick={handleAddPlace}>
                     <Link to="/"style={{color:'inherit',textDecoration:'none'}}>Go to Home</Link>
                 </button>
@@ -110,4 +110,4 @@ const Paymentsuccess = () => {
     );
 };
 
-export default Paymentsuccess;
+export default Accodsuccess;

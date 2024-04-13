@@ -208,32 +208,41 @@ const Profile = () => {
     <>
     <div className="centered-container" style={{ display: 'flex', justifyContent: 'center', margin: '4vh' }}>
       <div className="button-container">
-        <button
-          className={`btn ${activeButton === 'profile' ? 'btn-success' : 'btn-secondary'}`}
-          onClick={() => handleButtonClick('profile')} style={{ marginRight: '10px' }}
-        >
-          My Profile
-        </button>
-        <button
-          className={`btn ${activeButton === 'booking' ? 'btn-success' : 'btn-secondary'}`}
-          onClick={() => handleButtonClick('booking')}style={{ marginRight: '10px' }}
-        >
-          My Booking
-        </button>
-        <button
-          className={`btn ${activeButton === 'accommodation' ? 'btn-success' : 'btn-secondary'}`}
-          onClick={() => handleButtonClick('accommodation')} style={{ marginRight: '10px' }}
-        >
-          My Accomodation
-        </button>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+  <button
+    className={`btn ${activeButton === 'profile' ? 'btn-success' : 'btn-secondary'}`}
+    onClick={() => handleButtonClick('profile')}
+    style={{ marginRight: '10px' }}
+  >
+    My Profile
+  </button>
+
+  <button
+    className={`btn ${activeButton === 'booking' ? 'btn-success' : 'btn-secondary'}`}
+    onClick={() => handleButtonClick('booking')}
+    style={{ marginRight: '10px' }}
+  >
+    My Booking
+  </button>
+
+  <button
+    className={`btn ${activeButton === 'accommodation' ? 'btn-success' : 'btn-secondary'}`}
+    onClick={() => handleButtonClick('accommodation')}
+    style={{ marginRight: '10px' }}
+  >
+    My Accommodation
+  </button>
+</div>
+
+
       
 
         {activeButton === 'profile' && (
           <div className="profile-details mt-4">
             <UserInfo
-              fullName={user.name}
-              emailAddress={user.email}
-              phoneNumber={user.phno}
+              fullName=<strong>{user.name}</strong>
+              emailAddress=<strong>{user.email}</strong>
+              phoneNumber=<strong>{user.phno}</strong>
             />
             <EditProfileButton />
             <ChangePasswordButton />
