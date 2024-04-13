@@ -7,6 +7,10 @@ const BookingSchema = new Schema({
         required: true,
 
     },
+    accoId:{
+        type: String,
+        required: true,
+    },
     userEmail:{
         type: String,
         required: true,

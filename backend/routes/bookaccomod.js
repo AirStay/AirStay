@@ -23,7 +23,7 @@ router.post('/bookaccomod', fetchuser, [
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { userId, userEmail, fdate, tdate, guestnumber, name, phno, chname, cnumber, expiry, cvc } = req.body;
+        const { accoId, userId, userEmail, fdate, tdate, guestnumber, name, phno, chname, cnumber, expiry, cvc } = req.body;
 
         const booking = new Booking({
             fdate,
@@ -36,7 +36,8 @@ router.post('/bookaccomod', fetchuser, [
             expiry,
             cvc,
             userEmail,
-            userId
+            userId,
+            accoId
         });
 
         const savedBooking = await booking.save();
