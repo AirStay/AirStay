@@ -14,27 +14,41 @@ import Accodbook from './Components/Accodbook';
 import Paymentsuccess from './Components/Paymentsuccess';
 import Mybooking from './Components/Mybooking';
 import AccommodationDetails from './Components/Showaccodetails';
+import Alert from './Components/Alert';
+import { useState } from 'react';
 import Booking from './Components/Booking';
 
 function App() {
+  const [alert, setAlert] = useState();
+  const showAlert = (message, type)=>{
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+        setAlert(null);
+    }, 1500);
+}
   return (
     <Router> {/* Wrap your components with Router */}
       <>
         <Navbar />
+        <Alert alert={alert}/>
         {/* <Payment/> */}
         <div className="container">
           <Routes>
             <Route path='/profile' element={<Profile />} />
-            <Route path="/register" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Signup showAlert={showAlert} />} />
+            <Route path="/login" element={<Login showAlert={showAlert} />} />
             <Route path="/" element={<Home />} />
-            <Route path="/myaccomodation" element={<MyAccommodation />} />
+            <Route path="/myaccomodation" element={<MyAccommodation showAlert={showAlert}  />} />
             <Route path="/accodbook/:id" element={<Accodbook />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/paymentsuccess" element={<Paymentsuccess />} />
             <Route path="/mybooking" element={<Mybooking />} />
             <Route path="/accomod/:id" element={<AccommodationDetails/>} />
             <Route path="/booking/:id" element={<Booking/>} />
+           
           </Routes>
         </div>
         <Filter />
