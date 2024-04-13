@@ -36,7 +36,7 @@ const Signup = (props) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '80vh', // Set minimum height to fill the viewport
+        minHeight: '70vh', // Set minimum height to fill the viewport
       }}
     >
       <div

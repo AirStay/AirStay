@@ -96,7 +96,7 @@ const Paymentsuccess = () => {
     };
 
     return (
-        <div className="container d-flex justify-content-center align-items-center"style={{ minHeight: '80vh' }}>
+        <div className="container d-flex justify-content-center align-items-center"style={{ minHeight: '70vh' }}>
             <div className="bg-white border border-dark rounded-lg p-4 text-center">
                 <h1 className="text-2xl font-bold mb-4">Payment Successfully Completed!</h1>
                 <p className="text-lg mb-4">Thank you for your payment.</p>

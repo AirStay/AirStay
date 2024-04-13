@@ -96,7 +96,7 @@ const Accodsuccess = () => {
     };
 
     return (
-        <div className="container d-flex justify-content-center align-items-center"style={{ minHeight: '80vh' }}>
+        <div className="container d-flex justify-content-center align-items-center"style={{ minHeight: '70vh' }}>
             <div className="bg-white border border-dark rounded-lg p-4 text-center">
                 <h1 className="text-2xl font-bold mb-4">Accomodation Added Successfully!</h1>
                 <p className="text-lg mb-4">Thank you.</p>
@@ -105,7 +105,7 @@ const Accodsuccess = () => {
                 </button>
             </div>
             {showForm && <MyAccommodation onClose={() => setShowForm(false)} />}
-            <canvas id="canvas" style={{ position: 'fixed', top: '0', left: '0', zIndex: '-1', width: '100vw', height: '100vh' }}></canvas>
+            <canvas id="canvas" style={{ position: 'fixed', top: '0', left: '0', zIndex: '-1', width: '100vw', height: '80vh' }}></canvas>
         </div>
     );
 };
