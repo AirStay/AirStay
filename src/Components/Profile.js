@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Accommodation from './Accomodation';
 import Showacco from './Showacco';
+import MyBooking from './Mybooking';
 // Import CSS file for styles (if needed)
 
 const UserInfo = ({ fullName, emailAddress, phoneNumber }) => {
@@ -243,6 +244,11 @@ const Profile = () => {
           <div className="profile-details mt-4">
             <Accommodation/>
           <Showacco/>
+          </div>
+        )}
+        {activeButton === 'booking' && (
+          <div className="profile-details mt-4">
+            <MyBooking/>
           </div>
         )}
       </div>
