@@ -4,28 +4,37 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Booking from './Booking';
+import { CardText } from 'react-bootstrap';
 
 function BookingCard({ booking }) {
   let navigate = useNavigate();
-
-  // const handleDetailsClick = () => {
-  //   navigate(`/accomod/${accommodation._id}`);
-  // };
+  const [accommodation, setAccommodation] = useState(null);
+ 
+  useEffect(() => {
+    const fetchAccommodation = async () => {
+      try {
+        const response = await axios.get(`http://localhost:7420/api/disaccomod/${booking.accoId}`);
+        setAccommodation(response.data);
+      } catch (error) {
+        console.error('Error fetching accommodation:', error);
+      }
+    };
+    fetchAccommodation();
+  }, [booking.accoId]);
 
   return (
     <div className="col-md-6 mb-4">
-      <Card style={{ height: '100%' }}>
-        <Card.Header>{booking.name}</Card.Header>
-        <Card.Body style={{ height: '100%' }}>
-          {/* <div style={{ height: '80%' }}>
-            {accommodation.image && <img src={require(`../../uploads/${accommodation.image}`)} alt="Accommodation" style={{ width: '100%', objectFit: 'cover' }} />}
-          </div> */}
-          <Card.Text>
-            {/* <strong>Price:</strong> Rs. {accommodation.price} */}
-          </Card.Text>
-          {/* <Button variant="primary" onClick={handleDetailsClick}>More Details</Button> */}
-        </Card.Body>
-      </Card>
+      {accommodation&& booking && (
+        <Card style={{ height: '100%' }}>
+          <Card.Header>{accommodation.propertyName}</Card.Header>
+          <Card.Body style={{ height: '100%' }}>
+          {accommodation.image && <img src={require(`../../uploads/${accommodation.image}`)} alt="Accommodation"height={"250px"} />}
+          <CardText>{booking.name}</CardText>
+          <CardText>{booking.tdate}</CardText>
+          <CardText>{booking.fdate}</CardText>
+          </Card.Body>
+        </Card>
+      )}
     </div>
   );
 }
@@ -50,7 +59,7 @@ function MyBooking() {
         setError('Error fetching bookings. Please try again later.');
       }
     };
-
+    
     fetchMyBooking();
   }, []);
 

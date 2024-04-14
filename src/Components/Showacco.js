@@ -78,6 +78,7 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
+
 function AccommodationCard({ accommodation }) {
   let navigate = useNavigate();
 
@@ -86,17 +87,17 @@ function AccommodationCard({ accommodation }) {
   };
 
   return (
-    <div className="col-md-6 mb-4">
+    <div className="col-md-4 mb-4">
       <Card style={{ height: '100%' }}>
         <Card.Header>{accommodation.propertyName}</Card.Header>
         <Card.Body style={{ height: '100%' }}>
-          <div style={{ height: '80%' }}>
+          <div style={{ height: '70%' }}>
             {accommodation.image && <img src={require(`../../uploads/${accommodation.image}`)} alt="Accommodation" style={{ width: '100%', objectFit: 'cover' }} />}
           </div>
           <Card.Text>
             <strong>Price:</strong> Rs. {accommodation.price}
           </Card.Text>
-          <Button variant="primary" onClick={handleDetailsClick}>More Details</Button>
+          <Button variant="primary mb-4" onClick={handleDetailsClick}>More Details</Button>
         </Card.Body>
       </Card>
     </div>

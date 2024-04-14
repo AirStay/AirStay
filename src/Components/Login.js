@@ -17,15 +17,15 @@ const Login = (props) => {
       const json = await response.json()
       console.log(json);
       if (json.success){
-          // Save the auth token and redirect
-          localStorage.setItem('token', json.authtoken); 
-          navigate("/");
-          // props.showAlert("Logged in successfully", "success")
-      }
-      else{
-          // props.showAlert("Invalid Details", "danger")
-      }
-  }
+        // Save the auth token and redirect
+        localStorage.setItem('token', json.authtoken); 
+        navigate("/");
+        props.showAlert("Logged in successfully", "success")
+    }
+    else{
+        props.showAlert("Invalid Details", "danger")
+    }
+}
 
   const onChange = (e)=>{
       setCredentials({...credentials, [e.target.name]: e.target.value})
