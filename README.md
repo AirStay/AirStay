@@ -1,51 +1,70 @@
+# Getting Started with Create React App
 
-# Airstay
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Airstay is a React-based web application designed to help users find accommodations for their travel needs. Whether you're planning a weekend getaway, a business trip, or a vacation, Airstay provides a user-friendly platform to search for and book accommodations that suit your preferences and budget.
+## Available Scripts
 
+In the project directory, you can run:
 
-## Features
+### `npm start`
 
-- Interactive Filters: Easily refine your search by setting your desired price range, property type, room type, and amenities.
-- Property Type Selection: Choose from various property types, including houses, flats, guest houses, and hotels.
-- Room Type Selection: Select your preferred room type, such as entire rooms, individual rooms, or any type.
-- Amenities Filtering: Filter accommodations based on amenities like Wi-Fi, AC, TV, parking, kitchen, washing machine, and pool.
-- Responsive Design: Airstay is optimized for desktop, tablet, and mobile devices, ensuring a seamless user experience across all platforms.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
+### `npm test`
 
-## Getting Started
-To get started with Airstay, follow these steps:
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-1. Clone the repository: git clone <repository-url>
-2. Navigate to the project directory: cd airstay
-3. Install dependencies: npm install
-4. Start the development server: npm start
-5. Open your browser and go to http://localhost:3000
-## Built With
-- React - A JavaScript library for building user interfaces
-- React Bootstrap - Bootstrap components built with React
-- React Input Range - A flexible and customizable input range component for React
-- FontAwesome - Icons used for property types and amenities
-## Contributing
+### `npm run build`
 
-Contributions are welcome! If you have any suggestions, feature requests, or bug reports, please open an issue on GitHub or submit a pull request.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## License
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-This project is licensed under the MIT License - see the [ LICENSE](https://choosealicense.com/licenses/mit/) file for details. 
+### `npm run eject`
 
-## Acknowledgements
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
- - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
-- Special thanks to the developers of React, React Bootstrap, React Input Range, and FontAwesome for providing the tools and libraries used in this project.
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## Troubleshooting 
-If you encounter any issues while running or building the project, please refer to the troubleshooting guide in the Create React App documentation.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+## Learn More
 
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
+To learn React, check out the [React documentation](https://reactjs.org/).
 
+### Code Splitting
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
