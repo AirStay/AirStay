@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { FaBed, FaHome, FaBuilding, FaHotel, FaWifi, FaTv, FaParking, FaSwimmingPool, FaUtensils, FaWrench, FaMailchimp, FaHandsWash, FaWater } from 'react-icons/fa';
+import { FaBed, FaHome, FaBuilding, FaHotel, FaWifi, FaTv, FaParking, FaSwimmingPool, FaUtensils, FaWrench, FaHandsWash } from 'react-icons/fa';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
 
@@ -8,6 +8,9 @@ const Filter = ({ showModal, handleClose }) => {
   const [minPrice, setMinPrice] = useState(600);
   const [maxPrice, setMaxPrice] = useState(30000);
   const [sliderValue, setSliderValue] = useState([600, 30000]);
+  const [selectedPropertyType, setSelectedPropertyType] = useState(null);
+  const [selectedRoomType, setSelectedRoomType] = useState(null);
+  const [selectedAmenities, setSelectedAmenities] = useState([]);
 
   const handleModalClose = () => {
     handleClose(); // Close the modal
@@ -20,7 +23,7 @@ const Filter = ({ showModal, handleClose }) => {
   };
 
   const handleMinInputChange = (e) => {
-    const newMinPrice = parseInt(e.target.value);
+    const newMinPrice = parseInt(e.target.value) || 0; // Ensure it's a number, default to 0
     setMinPrice(newMinPrice);
     if (newMinPrice > maxPrice) {
       setMaxPrice(newMinPrice);
@@ -29,9 +32,9 @@ const Filter = ({ showModal, handleClose }) => {
       setSliderValue([newMinPrice, maxPrice]);
     }
   };
-
+  
   const handleMaxInputChange = (e) => {
-    const newMaxPrice = parseInt(e.target.value);
+    const newMaxPrice = parseInt(e.target.value) || 0; // Ensure it's a number, default to 0
     setMaxPrice(newMaxPrice);
     if (newMaxPrice < minPrice) {
       setMinPrice(newMaxPrice);
@@ -41,14 +44,33 @@ const Filter = ({ showModal, handleClose }) => {
     }
   };
 
+  const handlePropertyTypeClick = (type) => {
+    setSelectedPropertyType(type === selectedPropertyType ? null : type);
+  };
+
+  const handleRoomTypeClick = (type) => {
+    setSelectedRoomType(type === selectedRoomType ? null : type);
+  };
+
+  const handleAmenitiesClick = (amenity) => {
+    if (selectedAmenities.includes(amenity)) {
+      setSelectedAmenities(selectedAmenities.filter(item => item !== amenity));
+    } else {
+      setSelectedAmenities([...selectedAmenities, amenity]);
+    }
+  };
+
   const handleClearFilters = () => {
     setMinPrice(600);
     setMaxPrice(30000);
     setSliderValue([600, 30000]);
+    setSelectedPropertyType(null);
+    setSelectedRoomType(null);
+    setSelectedAmenities([]);
   };
 
   const handleApplyFilters = () => {
-    // Handle applying filters, e.g., sending selected price range to parent component
+    // Handle applying filters, e.g., sending selected filters to parent component
     handleClose();
   };
 
@@ -77,34 +99,62 @@ const Filter = ({ showModal, handleClose }) => {
         </div>
         <label htmlFor="propertyType" className="form-label">Property Type:</label>
         <div className="d-flex justify-content-between">
-          <Button variant="outline-primary" style={{ flex: '1', marginRight: '10px', backgroundColor: 'transparent' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#007bff'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
+          <Button
+            variant="outline-primary"
+            style={{ flex: '1', marginRight: '10px', backgroundColor: selectedPropertyType === 'House' ? '#007bff' : 'transparent', color: selectedPropertyType === 'House' ? 'white' : '#007bff' }}
+            onClick={() => handlePropertyTypeClick('House')}
+          >
             <FaHome size={20} />
             <span style={{ marginLeft: '5px' }}>House</span>
           </Button>
-          <Button variant="outline-primary" style={{ flex: '1', marginRight: '10px', backgroundColor: 'transparent' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#007bff'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
+          <Button
+            variant="outline-primary"
+            style={{ flex: '1', marginRight: '10px', backgroundColor: selectedPropertyType === 'Flat' ? '#007bff' : 'transparent', color: selectedPropertyType === 'Flat' ? 'white' : '#007bff' }}
+            onClick={() => handlePropertyTypeClick('Flat')}
+          >
             <FaBuilding size={20} />
             <span style={{ marginLeft: '5px' }}>Flat</span>
           </Button>
-          <Button variant="outline-primary" style={{ flex: '1', marginRight: '10px', backgroundColor: 'transparent' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#007bff'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
+          <Button
+            variant="outline-primary"
+            style={{ flex: '1', marginRight: '10px', backgroundColor: selectedPropertyType === 'Guest House' ? '#007bff' : 'transparent', color: selectedPropertyType === 'Guest House' ? 'white' : '#007bff' }}
+            onClick={() => handlePropertyTypeClick('Guest House')}
+          >
             <FaBed size={20} />
             <span style={{ marginLeft: '5px' }}>Guest House</span>
           </Button>
-          <Button variant="outline-primary" style={{ flex: '1', backgroundColor: 'transparent' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#007bff'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
+          <Button
+            variant="outline-primary"
+            style={{ flex: '1', backgroundColor: selectedPropertyType === 'Hotel' ? '#007bff' : 'transparent', color: selectedPropertyType === 'Hotel' ? 'white' : '#007bff' }}
+            onClick={() => handlePropertyTypeClick('Hotel')}
+          >
             <FaHotel size={20} />
             <span style={{ marginLeft: '5px' }}>Hotel</span>
           </Button>
         </div>
         <label htmlFor="roomType" className="form-label">Room Type :</label>
         <div className="d-flex justify-content-between">
-          <Button variant="outline-primary" style={{ flex: '1', marginRight: '10px', backgroundColor: 'transparent' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#007bff'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
+          <Button
+            variant="outline-primary"
+            style={{ flex: '1', marginRight: '10px', backgroundColor: selectedRoomType === 'Entire Room' ? '#007bff' : 'transparent', color: selectedRoomType === 'Entire Room' ? 'white' : '#007bff' }}
+            onClick={() => handleRoomTypeClick('Entire Room')}
+          >
             <FaBed size={20} />
             <span style={{ marginLeft: '5px' }}>Entire Room</span>
           </Button>
-          <Button variant="outline-primary" style={{ flex: '1', marginRight: '10px', backgroundColor: 'transparent' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#007bff'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
+          <Button
+            variant="outline-primary"
+            style={{ flex: '1', marginRight: '10px', backgroundColor: selectedRoomType === 'Room' ? '#007bff' : 'transparent', color: selectedRoomType === 'Room' ? 'white' : '#007bff' }}
+            onClick={() => handleRoomTypeClick('Room')}
+          >
             <FaHotel size={20} />
             <span style={{ marginLeft: '5px' }}>Room</span>
           </Button>
-          <Button variant="outline-primary" style={{ flex: '1', backgroundColor: 'transparent' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#007bff'} onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}>
+          <Button
+            variant="outline-primary"
+            style={{ flex: '1', backgroundColor: selectedRoomType === 'Any Type' ? '#007bff' : 'transparent', color: selectedRoomType === 'Any Type' ? 'white' : '#007bff' }}
+            onClick={() => handleRoomTypeClick('Any Type')}
+          >
             <FaBuilding size={20} />
             <span style={{ marginLeft: '5px' }}>Any Type</span>
           </Button>
@@ -114,19 +164,43 @@ const Filter = ({ showModal, handleClose }) => {
           <div className="col">
             <div className="mb-3">
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="wifi" />
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="wifi"
+                  checked={selectedAmenities.includes('Wi-Fi')}
+                  onChange={() => handleAmenitiesClick('Wi-Fi')}
+                />
                 <label className="form-check-label" htmlFor="wifi"><FaWifi /> Wi-Fi</label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="ac" />
-                <label className="form-check-label" htmlFor="ac"><FaWifi /> AC</label>
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="ac"
+                  checked={selectedAmenities.includes('AC')}
+                  onChange={() => handleAmenitiesClick('AC')}
+                />
+                <label className="form-check-label" htmlFor="ac"><FaWrench /> AC</label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="tv" />
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="tv"
+                  checked={selectedAmenities.includes('TV')}
+                  onChange={() => handleAmenitiesClick('TV')}
+                />
                 <label className="form-check-label" htmlFor="tv"><FaTv /> TV</label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="parking" />
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="parking"
+                  checked={selectedAmenities.includes('Parking')}
+                  onChange={() => handleAmenitiesClick('Parking')}
+                />
                 <label className="form-check-label" htmlFor="parking"><FaParking /> Free Parking</label>
               </div>
             </div>
@@ -134,15 +208,33 @@ const Filter = ({ showModal, handleClose }) => {
           <div className="col">
             <div className="mb-3">
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="kitchen" />
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="kitchen"
+                  checked={selectedAmenities.includes('Kitchen')}
+                  onChange={() => handleAmenitiesClick('Kitchen')}
+                />
                 <label className="form-check-label" htmlFor="kitchen"><FaUtensils /> Kitchen</label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="washingMachine" />
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="washingMachine"
+                  checked={selectedAmenities.includes('Washing Machine')}
+                  onChange={() => handleAmenitiesClick('Washing Machine')}
+                />
                 <label className="form-check-label" htmlFor="washingMachine"><FaHandsWash /> Washing Machine</label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="pool" />
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="pool"
+                  checked={selectedAmenities.includes('Pool')}
+                  onChange={() => handleAmenitiesClick('Pool')}
+                />
                 <label className="form-check-label" htmlFor="pool"><FaSwimmingPool /> Pool</label>
               </div>
             </div>
