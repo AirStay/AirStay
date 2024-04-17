@@ -89,10 +89,26 @@ const Filter = ({ showModal, handleClose }) => {
             onChange={handleSliderChange}
           />
           <div className="d-flex justify-content-between" style={{ marginTop: '10px' }}>
-            <span>600</span>
-            <span>30,000</span>
+            <span>{minPrice}</span>
+            <span>{maxPrice}</span>
           </div>
         </div>
+        {/* <div className="mb-3">
+  <input
+    type="range"
+    min={600}
+    max={30000}
+    value={minPrice}
+    onChange={handleMinInputChange}
+    className="form-range"
+    style={{ width: '100%' }}
+  />
+  <div className="d-flex justify-content-between" style={{ marginTop: '10px' }}>
+    <span>{minPrice}</span>
+    <span>{maxPrice}</span>
+  </div>
+</div> */}
+
         <div className="d-flex justify-content-between mb-3">
           <input type="number" className="form-control text-center" value={minPrice} onChange={handleMinInputChange} style={{ width: '48%' }} />
           <input type="number" className="form-control text-center" value={maxPrice} onChange={handleMaxInputChange} style={{ width: '48%' }} />
